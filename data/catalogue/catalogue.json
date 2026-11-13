@@ -1,1 +1,339 @@
-{ "version": "0.0.0", "source": "cardadvisor.in CC BY 4.0", "cards": [] }
+{
+  "version": "2026-11-13",
+  "source": "cardadvisor.in CC BY 4.0 v2026-09-17, verified against issuer documents",
+  "cards": [
+    {
+      "id": "hdfc-millennia",
+      "issuer": "HDFC",
+      "name": "HDFC Millennia Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 1000,
+      "annualFeeRs": 1000,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 100000,
+      "forexMarkupPct": null,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 1,
+          "monthlyCapRs": 1000,
+          "capBasis": "reward",
+          "exclusions": ["fuel", "wallet-load", "rent", "government"],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "online-shopping",
+          "ratePct": 5,
+          "monthlyCapRs": 1000,
+          "capBasis": "reward",
+          "exclusions": [],
+          "merchants": [
+            "Amazon",
+            "BookMyShow",
+            "Cult.fit",
+            "Flipkart",
+            "Myntra",
+            "Sony LIV",
+            "Swiggy",
+            "Tata CLiQ",
+            "Uber",
+            "Zomato"
+          ],
+          "pointValuePaisa": 100
+        }
+      ],
+      "milestones": [
+        {
+          "period": "quarter",
+          "spendRs": 100000,
+          "benefit": "Gift voucher worth Rs 1,000, or one airport lounge voucher instead",
+          "benefitValueRs": 1000
+        }
+      ],
+      "pointsExpiryMonths": 24,
+      "lounge": null,
+      "upiOnCredit": null,
+      "verified": {
+        "on": "2026-11-13",
+        "sourceUrl": "https://www.hdfc.bank.in/credit-cards/millennia-credit-card"
+      }
+    },
+    {
+      "id": "hdfc-regalia-gold",
+      "issuer": "HDFC",
+      "name": "HDFC Regalia Gold Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 2500,
+      "annualFeeRs": 2500,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 400000,
+      "forexMarkupPct": 2,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 1.25,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": ["fuel", "wallet-load", "rent", "government"],
+          "merchants": [],
+          "pointValuePaisa": 50
+        },
+        {
+          "category": "groceries",
+          "ratePct": 1.25,
+          "monthlyCapRs": 1000,
+          "capBasis": "reward",
+          "exclusions": ["fuel", "wallet-load", "rent", "government"],
+          "merchants": [],
+          "pointValuePaisa": 50
+        },
+        {
+          "category": "insurance",
+          "ratePct": 1.25,
+          "monthlyCapRs": 1000,
+          "capBasis": "reward",
+          "exclusions": ["fuel", "wallet-load", "rent", "government"],
+          "merchants": [],
+          "pointValuePaisa": 50
+        },
+        {
+          "category": "online-shopping",
+          "ratePct": 6.25,
+          "monthlyCapRs": 2500,
+          "capBasis": "reward",
+          "exclusions": ["fuel", "wallet-load", "rent", "government"],
+          "merchants": [
+            "Myntra",
+            "Nykaa",
+            "Reliance Digital",
+            "Marks & Spencer"
+          ],
+          "pointValuePaisa": 50
+        }
+      ],
+      "milestones": [
+        {
+          "period": "quarter",
+          "spendRs": 150000,
+          "benefit": "One voucher worth Rs 1,500 (Marriott Experience, Myntra, MMT Hotels, Marks & Spencer or Reliance Digital)",
+          "benefitValueRs": 1500
+        },
+        {
+          "period": "anniversary-year",
+          "spendRs": 750000,
+          "benefit": "One complimentary flight ticket worth Rs 5,000",
+          "benefitValueRs": 5000
+        }
+      ],
+      "pointsExpiryMonths": 24,
+      "lounge": {
+        "domesticPerQuarter": 3,
+        "internationalPerYear": 6,
+        "spendGateRs": 60000,
+        "gatePeriod": "quarter"
+      },
+      "upiOnCredit": null,
+      "verified": {
+        "on": "2026-11-13",
+        "sourceUrl": "https://www.hdfc.bank.in/credit-cards/regalia-gold-credit-card"
+      }
+    },
+    {
+      "id": "hdfc-tata-neu-infinity",
+      "issuer": "HDFC",
+      "name": "Tata Neu Infinity HDFC Bank Credit Card",
+      "network": "RUPAY",
+      "joiningFeeRs": 1499,
+      "annualFeeRs": 1499,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 300000,
+      "forexMarkupPct": null,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 1.5,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": ["fuel", "wallet-load", "rent", "government"],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "groceries",
+          "ratePct": 1.5,
+          "monthlyCapRs": 2000,
+          "capBasis": "reward",
+          "exclusions": ["fuel", "wallet-load", "rent", "government"],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "insurance",
+          "ratePct": 1.5,
+          "monthlyCapRs": 2000,
+          "capBasis": "reward",
+          "exclusions": ["fuel", "wallet-load", "rent", "government"],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "utilities",
+          "ratePct": 1.5,
+          "monthlyCapRs": 2000,
+          "capBasis": "reward",
+          "exclusions": ["fuel", "wallet-load", "rent", "government"],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "telecom",
+          "ratePct": 1.5,
+          "monthlyCapRs": 2000,
+          "capBasis": "reward",
+          "exclusions": ["fuel", "wallet-load", "rent", "government"],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "online-shopping",
+          "ratePct": 5,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": ["fuel", "wallet-load", "rent", "government"],
+          "merchants": [
+            "Croma",
+            "Tata CLiQ",
+            "Westside",
+            "IHCL",
+            "Air India Express",
+            "Air India",
+            "1mg",
+            "Cult",
+            "Tata Play",
+            "BigBasket",
+            "Titan",
+            "Tanishq",
+            "Qmin"
+          ],
+          "pointValuePaisa": 100
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": {
+        "domesticPerQuarter": 2,
+        "internationalPerYear": null,
+        "spendGateRs": 50000,
+        "gatePeriod": "quarter"
+      },
+      "upiOnCredit": {
+        "supported": true,
+        "ratePct": 0.5,
+        "excluded": ["fuel", "wallet-load", "rent", "government"]
+      },
+      "verified": {
+        "on": "2026-11-13",
+        "sourceUrl": "https://www.hdfc.bank.in/credit-cards/tata-neu-infinity-hdfc-bank-credit-card"
+      }
+    },
+    {
+      "id": "hdfc-tata-neu-plus",
+      "issuer": "HDFC",
+      "name": "Tata Neu Plus HDFC Bank Credit Card",
+      "network": "RUPAY",
+      "joiningFeeRs": 499,
+      "annualFeeRs": 499,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 100000,
+      "forexMarkupPct": null,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 1,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": ["fuel", "wallet-load", "rent", "government"],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "groceries",
+          "ratePct": 1,
+          "monthlyCapRs": 1000,
+          "capBasis": "reward",
+          "exclusions": ["fuel", "wallet-load", "rent", "government"],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "insurance",
+          "ratePct": 1,
+          "monthlyCapRs": 2000,
+          "capBasis": "reward",
+          "exclusions": ["fuel", "wallet-load", "rent", "government"],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "utilities",
+          "ratePct": 1,
+          "monthlyCapRs": 2000,
+          "capBasis": "reward",
+          "exclusions": ["fuel", "wallet-load", "rent", "government"],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "telecom",
+          "ratePct": 1,
+          "monthlyCapRs": 2000,
+          "capBasis": "reward",
+          "exclusions": ["fuel", "wallet-load", "rent", "government"],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "online-shopping",
+          "ratePct": 2,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": ["fuel", "wallet-load", "rent", "government"],
+          "merchants": [
+            "Croma",
+            "Tata CLiQ",
+            "Westside",
+            "IHCL",
+            "Air India Express",
+            "Air India",
+            "1mg",
+            "Cult",
+            "Tata Play",
+            "BigBasket",
+            "Titan",
+            "Tanishq",
+            "Qmin"
+          ],
+          "pointValuePaisa": 100
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": {
+        "domesticPerQuarter": 1,
+        "internationalPerYear": null,
+        "spendGateRs": 50000,
+        "gatePeriod": "quarter"
+      },
+      "upiOnCredit": {
+        "supported": true,
+        "ratePct": 0.25,
+        "excluded": ["fuel", "wallet-load", "rent", "government"]
+      },
+      "verified": {
+        "on": "2026-11-13",
+        "sourceUrl": "https://www.hdfc.bank.in/credit-cards/tata-neu-plus-hdfc-bank-credit-card"
+      }
+    }
+  ]
+}

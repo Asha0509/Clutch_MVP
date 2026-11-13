@@ -3,116 +3,6 @@
   "source": "CardAdvisor — India Credit Card Facts Dataset v2026-09-17, https://cardadvisor.in/data/v/2026-09-17/cards.json.",
   "cards": [
     {
-      "id": "hdfc-millennia",
-      "issuer": "HDFC",
-      "name": "HDFC Millennia Credit Card",
-      "network": "VISA",
-      "joiningFeeRs": 1000,
-      "annualFeeRs": 1000,
-      "lifetimeFree": false,
-      "feeWaiverSpendRs": 100000,
-      "forexMarkupPct": 3.5,
-      "rewards": [
-        {
-          "category": "other",
-          "ratePct": 1,
-          "monthlyCapRs": 1000,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [],
-          "pointValuePaisa": 100
-        },
-        {
-          "category": "online-shopping",
-          "ratePct": 5,
-          "monthlyCapRs": 1000,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [
-            "Amazon",
-            "BookMyShow",
-            "Cult.fit",
-            "Flipkart",
-            "Myntra",
-            "SonyLIV",
-            "Swiggy",
-            "Tata CLiQ",
-            "Uber",
-            "Zomato"
-          ],
-          "pointValuePaisa": 100
-        }
-      ],
-      "milestones": [],
-      "pointsExpiryMonths": null,
-      "lounge": null,
-      "upiOnCredit": null,
-      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
-    },
-    {
-      "id": "hdfc-regalia-gold",
-      "issuer": "HDFC",
-      "name": "HDFC Regalia Gold Credit Card",
-      "network": "VISA",
-      "joiningFeeRs": 2500,
-      "annualFeeRs": 2500,
-      "lifetimeFree": false,
-      "feeWaiverSpendRs": 400000,
-      "forexMarkupPct": 2,
-      "rewards": [
-        {
-          "category": "other",
-          "ratePct": 1.25,
-          "monthlyCapRs": null,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [],
-          "pointValuePaisa": 50
-        },
-        {
-          "category": "online-shopping",
-          "ratePct": 6.25,
-          "monthlyCapRs": 2500,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [
-            "Myntra",
-            "Marks & Spencer",
-            "Nykaa",
-            "Reliance Digital"
-          ],
-          "pointValuePaisa": 50
-        },
-        {
-          "category": "travel-flights",
-          "ratePct": 6.25,
-          "monthlyCapRs": 2000,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [
-            "HDFC SmartBuy"
-          ],
-          "pointValuePaisa": 50
-        },
-        {
-          "category": "travel-hotels",
-          "ratePct": 6.25,
-          "monthlyCapRs": 2000,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [
-            "HDFC SmartBuy"
-          ],
-          "pointValuePaisa": 50
-        }
-      ],
-      "milestones": [],
-      "pointsExpiryMonths": null,
-      "lounge": null,
-      "upiOnCredit": null,
-      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
-    },
-    {
       "id": "hdfc-moneyback-plus",
       "issuer": "HDFC",
       "name": "HDFC MoneyBack+ Credit Card",
@@ -180,12 +70,7 @@
           "monthlyCapRs": 1500,
           "capBasis": null,
           "exclusions": [],
-          "merchants": [
-            "Swiggy app (Food",
-            "Instamart",
-            "Dineout",
-            "Genie)"
-          ],
+          "merchants": ["Swiggy app (Food", "Instamart", "Dineout", "Genie)"],
           "pointValuePaisa": 100
         },
         {
@@ -207,151 +92,6 @@
             "Discount Stores",
             "Cleartrip"
           ],
-          "pointValuePaisa": 100
-        }
-      ],
-      "milestones": [],
-      "pointsExpiryMonths": null,
-      "lounge": null,
-      "upiOnCredit": null,
-      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
-    },
-    {
-      "id": "hdfc-tata-neu-infinity",
-      "issuer": "HDFC",
-      "name": "Tata Neu Infinity HDFC Bank Credit Card",
-      "network": "RUPAY",
-      "joiningFeeRs": 1499,
-      "annualFeeRs": 1499,
-      "lifetimeFree": false,
-      "feeWaiverSpendRs": 300000,
-      "forexMarkupPct": 2,
-      "rewards": [
-        {
-          "category": "other",
-          "ratePct": 1.5,
-          "monthlyCapRs": null,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [],
-          "pointValuePaisa": 100
-        },
-        {
-          "category": "groceries",
-          "ratePct": 1.5,
-          "monthlyCapRs": 2000,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [],
-          "pointValuePaisa": 100
-        },
-        {
-          "category": "insurance",
-          "ratePct": 1.5,
-          "monthlyCapRs": 2000,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [
-            "LIC and other insurers",
-            "paid via bill payments on the Tata Neu app"
-          ],
-          "pointValuePaisa": 100
-        },
-        {
-          "category": "online-shopping",
-          "ratePct": 5,
-          "monthlyCapRs": null,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [
-            "Tata Neu",
-            "BigBasket",
-            "Croma",
-            "Tata CLiQ",
-            "1mg",
-            "Air India"
-          ],
-          "pointValuePaisa": 100
-        },
-        {
-          "category": "utilities",
-          "ratePct": 1.5,
-          "monthlyCapRs": 2000,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [],
-          "pointValuePaisa": 100
-        }
-      ],
-      "milestones": [],
-      "pointsExpiryMonths": null,
-      "lounge": null,
-      "upiOnCredit": null,
-      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
-    },
-    {
-      "id": "hdfc-tata-neu-plus",
-      "issuer": "HDFC",
-      "name": "Tata Neu Plus HDFC Bank Credit Card",
-      "network": "RUPAY",
-      "joiningFeeRs": 499,
-      "annualFeeRs": 499,
-      "lifetimeFree": false,
-      "feeWaiverSpendRs": 100000,
-      "forexMarkupPct": 3.5,
-      "rewards": [
-        {
-          "category": "other",
-          "ratePct": 1,
-          "monthlyCapRs": null,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [],
-          "pointValuePaisa": 100
-        },
-        {
-          "category": "groceries",
-          "ratePct": 1,
-          "monthlyCapRs": 1000,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [],
-          "pointValuePaisa": 100
-        },
-        {
-          "category": "insurance",
-          "ratePct": 1,
-          "monthlyCapRs": 2000,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [
-            "LIC and other insurers",
-            "paid via bill payments on the Tata Neu app"
-          ],
-          "pointValuePaisa": 100
-        },
-        {
-          "category": "online-shopping",
-          "ratePct": 2,
-          "monthlyCapRs": null,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [
-            "Tata Neu",
-            "BigBasket",
-            "Croma",
-            "Tata CLiQ",
-            "1mg"
-          ],
-          "pointValuePaisa": 100
-        },
-        {
-          "category": "utilities",
-          "ratePct": 1,
-          "monthlyCapRs": 2000,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [],
           "pointValuePaisa": 100
         }
       ],
@@ -387,9 +127,7 @@
           "monthlyCapRs": 144,
           "capBasis": null,
           "exclusions": [],
-          "merchants": [
-            "Indian Oil (IOCL)"
-          ],
+          "merchants": ["Indian Oil (IOCL)"],
           "pointValuePaisa": 96
         },
         {
@@ -581,9 +319,7 @@
           "monthlyCapRs": 325,
           "capBasis": null,
           "exclusions": [],
-          "merchants": [
-            "Bharat Petroleum (BPCL)"
-          ],
+          "merchants": ["Bharat Petroleum (BPCL)"],
           "pointValuePaisa": 25
         },
         {
@@ -668,9 +404,7 @@
           "monthlyCapRs": null,
           "capBasis": null,
           "exclusions": [],
-          "merchants": [
-            "Amazon"
-          ],
+          "merchants": ["Amazon"],
           "pointValuePaisa": 100
         },
         {
@@ -823,9 +557,7 @@
           "monthlyCapRs": 200,
           "capBasis": null,
           "exclusions": [],
-          "merchants": [
-            "Hindustan Petroleum (HPCL)"
-          ],
+          "merchants": ["Hindustan Petroleum (HPCL)"],
           "pointValuePaisa": 100
         },
         {
@@ -888,9 +620,7 @@
           "monthlyCapRs": null,
           "capBasis": null,
           "exclusions": [],
-          "merchants": [
-            "Swiggy food delivery"
-          ],
+          "merchants": ["Swiggy food delivery"],
           "pointValuePaisa": 100
         },
         {
@@ -899,10 +629,7 @@
           "monthlyCapRs": null,
           "capBasis": null,
           "exclusions": [],
-          "merchants": [
-            "Flipkart",
-            "Cleartrip"
-          ],
+          "merchants": ["Flipkart", "Cleartrip"],
           "pointValuePaisa": 100
         },
         {
@@ -911,9 +638,7 @@
           "monthlyCapRs": null,
           "capBasis": null,
           "exclusions": [],
-          "merchants": [
-            "Myntra"
-          ],
+          "merchants": ["Myntra"],
           "pointValuePaisa": 100
         }
       ],
@@ -949,11 +674,7 @@
           "monthlyCapRs": 500,
           "capBasis": null,
           "exclusions": [],
-          "merchants": [
-            "Swiggy",
-            "Zomato",
-            "Ola"
-          ],
+          "merchants": ["Swiggy", "Zomato", "Ola"],
           "pointValuePaisa": 100
         },
         {
@@ -962,9 +683,7 @@
           "monthlyCapRs": 500,
           "capBasis": null,
           "exclusions": [],
-          "merchants": [
-            "Google Pay"
-          ],
+          "merchants": ["Google Pay"],
           "pointValuePaisa": 100
         }
       ],
@@ -1054,10 +773,7 @@
           "monthlyCapRs": 400,
           "capBasis": null,
           "exclusions": [],
-          "merchants": [
-            "Zomato",
-            "District Movies"
-          ],
+          "merchants": ["Zomato", "District Movies"],
           "pointValuePaisa": 100
         },
         {
@@ -1066,9 +782,7 @@
           "monthlyCapRs": 200,
           "capBasis": null,
           "exclusions": [],
-          "merchants": [
-            "Blinkit"
-          ],
+          "merchants": ["Blinkit"],
           "pointValuePaisa": 100
         },
         {
@@ -1077,9 +791,7 @@
           "monthlyCapRs": null,
           "capBasis": null,
           "exclusions": [],
-          "merchants": [
-            "Airtel Thanks app"
-          ],
+          "merchants": ["Airtel Thanks app"],
           "pointValuePaisa": 100
         }
       ],
@@ -1304,9 +1016,7 @@
           "monthlyCapRs": 175,
           "capBasis": null,
           "exclusions": [],
-          "merchants": [
-            "Hindustan Petroleum (HPCL)"
-          ],
+          "merchants": ["Hindustan Petroleum (HPCL)"],
           "pointValuePaisa": 25
         },
         {
@@ -1351,9 +1061,7 @@
           "monthlyCapRs": 500,
           "capBasis": null,
           "exclusions": [],
-          "merchants": [
-            "Active paid benefit pack"
-          ],
+          "merchants": ["Active paid benefit pack"],
           "pointValuePaisa": 100
         },
         {
@@ -1362,9 +1070,7 @@
           "monthlyCapRs": 2500,
           "capBasis": null,
           "exclusions": [],
-          "merchants": [
-            "Active paid benefit pack"
-          ],
+          "merchants": ["Active paid benefit pack"],
           "pointValuePaisa": 25
         }
       ],
