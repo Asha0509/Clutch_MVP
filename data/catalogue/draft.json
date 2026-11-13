@@ -201,7 +201,7 @@
       "pointsExpiryMonths": null,
       "lounge": null,
       "upiOnCredit": null,
-      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked; BLOCKED: SBI documents give no reward point value for this variant (needed for ratePct)"
     },
     {
       "id": "sbi-simply-save",
@@ -240,42 +240,6 @@
           "exclusions": [],
           "merchants": [],
           "pointValuePaisa": 25
-        }
-      ],
-      "milestones": [],
-      "pointsExpiryMonths": null,
-      "lounge": null,
-      "upiOnCredit": null,
-      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
-    },
-    {
-      "id": "sbi-cashback",
-      "issuer": "SBI",
-      "name": "SBI Cashback Credit Card",
-      "network": "VISA",
-      "joiningFeeRs": 999,
-      "annualFeeRs": 999,
-      "lifetimeFree": false,
-      "feeWaiverSpendRs": 200000,
-      "forexMarkupPct": 3.5,
-      "rewards": [
-        {
-          "category": "other",
-          "ratePct": 1,
-          "monthlyCapRs": 2000,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [],
-          "pointValuePaisa": 100
-        },
-        {
-          "category": "online-shopping",
-          "ratePct": 5,
-          "monthlyCapRs": 2000,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [],
-          "pointValuePaisa": 100
         }
       ],
       "milestones": [],

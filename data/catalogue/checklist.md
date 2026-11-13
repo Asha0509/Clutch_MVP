@@ -54,3 +54,22 @@ Documents are on hdfc.bank.in under `/content/dam/hdfcbankpws/in/en/personal-ban
 | UPI         | 0.25% on any UPI ID, 0.75% more with the Tata Neu UPI ID; 500 NeuCoins a month cap                                           | T&C p1, p3                            |
 | Lounge      | 1 domestic voucher for Rs 50,000 spent in the same quarter                                                                   | `milestone_lounge_tata-neu-cc.pdf` p1 |
 | Uncertain   | Forex and expiry left null for the same reasons as Infinity (seed forex 3.5). Per-brand spend limits in T&C p6 not recorded. |                                       |
+
+## SBI Card, checked 2026-11-13
+
+SBI documents are on sbicard.com under `/sbi-card-en/assets/docs/pdf/`. Key fact statement (KFS) is `key-fact-statement.pdf`.
+
+### sbi-cashback
+
+| Field       | Value                                                                                                                                                                                                                                                                                                      | Where read                                                                             |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| Fee, waiver | Rs 999 joining and renewal; waived at Rs 2 lakh a year                                                                                                                                                                                                                                                     | KFS p1-2, row "CASHBACK SBI Card"                                                      |
+| Forex       | 3.5% (the card is not in the KFS exception list)                                                                                                                                                                                                                                                           | KFS p7-8, "Foreign Currency Transaction Fee"                                           |
+| Rates, caps | 5% online and 1% offline; Rs 2,000 cap on each per statement cycle; Rs 4,000 combined                                                                                                                                                                                                                      | `cashback-revised.pdf` (from 1 Apr 2026); `ekit-tncs/cashback-tnc-ekit.pdf` p35 item j |
+| Exclusions  | Fuel, wallet, rent, education, utilities and telecom MCCs, insurance, government and tolls, plus EMI, jewellery, railways, gaming                                                                                                                                                                          | T&C p34-35 category table; revision notice                                             |
+| Expiry      | Cashback does not expire                                                                                                                                                                                                                                                                                   | T&C FAQ "Will my Card Cashback expire?"                                                |
+| Uncertain   | Caps run per statement cycle, not calendar month. The Rs 4,000 combined cap has no field in the schema. "Online" is any online spend, recorded as online-shopping. Transactions under Rs 100 earn nothing (T&C p36 item s). Utilities MCCs include telecom (4814, 4816), so telecom is listed as excluded. |                                                                                        |
+
+### sbi-simply-click (not shipped)
+
+Blocked. The T&C (`SimplyClick-TnC.pdf`) gives 10X at partners, 5X on other online spends capped at 10,000 points a month, 1 point per Rs 100 otherwise, 24-month expiry, fee Rs 499 waived at Rs 1 lakh, Rs 2,000 voucher at annual online spends of Rs 1 lakh. No SBI document I could reach states what a reward point is worth for this variant, so the effective rate cannot be confirmed. The exclusive partner names are in an image. Stays in `draft.json`.

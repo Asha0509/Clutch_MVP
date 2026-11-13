@@ -334,6 +334,63 @@
         "on": "2026-11-13",
         "sourceUrl": "https://www.hdfc.bank.in/credit-cards/tata-neu-plus-hdfc-bank-credit-card"
       }
+    },
+    {
+      "id": "sbi-cashback",
+      "issuer": "SBI",
+      "name": "CASHBACK SBI Card",
+      "network": "VISA",
+      "joiningFeeRs": 999,
+      "annualFeeRs": 999,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 200000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "online-shopping",
+          "ratePct": 5,
+          "monthlyCapRs": 2000,
+          "capBasis": "reward",
+          "exclusions": [
+            "fuel",
+            "wallet-load",
+            "rent",
+            "education",
+            "utilities",
+            "telecom",
+            "insurance",
+            "government"
+          ],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "other",
+          "ratePct": 1,
+          "monthlyCapRs": 2000,
+          "capBasis": "reward",
+          "exclusions": [
+            "fuel",
+            "wallet-load",
+            "rent",
+            "education",
+            "utilities",
+            "telecom",
+            "insurance",
+            "government"
+          ],
+          "merchants": [],
+          "pointValuePaisa": 100
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "verified": {
+        "on": "2026-11-13",
+        "sourceUrl": "https://www.sbicard.com/en/personal/credit-cards/rewards/cashback-sbi-card.page"
+      }
     }
   ]
 }
