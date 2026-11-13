@@ -39,3 +39,16 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.env
+.env.local
+.env*.local
+secrets/
+logs/*
+!logs/.gitkeep
+firebase-debug.log
+*.log
+playwright-report/
+test-results/
+.firebase/
+coverage/
+CLAUDE.local.md

@@ -1,0 +1,1 @@
+Card facts in this catalogue are derived from the CardAdvisor open dataset, CC BY 4.0 (https://cardadvisor.in/data), and verified against issuer documents. Milestones, points expiry, lounge gates and UPI rules are hand-curated by the Founder. Ratings and editorial content from the source are not used.
