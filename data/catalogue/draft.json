@@ -1,0 +1,1513 @@
+{
+  "note": "Unverified seed. Cards move to catalogue.json only after issuer verification (see checklist.md).",
+  "source": "CardAdvisor — India Credit Card Facts Dataset v2026-09-17, https://cardadvisor.in/data/v/2026-09-17/cards.json.",
+  "cards": [
+    {
+      "id": "hdfc-millennia",
+      "issuer": "HDFC",
+      "name": "HDFC Millennia Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 1000,
+      "annualFeeRs": 1000,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 100000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 1,
+          "monthlyCapRs": 1000,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "online-shopping",
+          "ratePct": 5,
+          "monthlyCapRs": 1000,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Amazon",
+            "BookMyShow",
+            "Cult.fit",
+            "Flipkart",
+            "Myntra",
+            "SonyLIV",
+            "Swiggy",
+            "Tata CLiQ",
+            "Uber",
+            "Zomato"
+          ],
+          "pointValuePaisa": 100
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "hdfc-regalia-gold",
+      "issuer": "HDFC",
+      "name": "HDFC Regalia Gold Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 2500,
+      "annualFeeRs": 2500,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 400000,
+      "forexMarkupPct": 2,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 1.25,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 50
+        },
+        {
+          "category": "online-shopping",
+          "ratePct": 6.25,
+          "monthlyCapRs": 2500,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Myntra",
+            "Marks & Spencer",
+            "Nykaa",
+            "Reliance Digital"
+          ],
+          "pointValuePaisa": 50
+        },
+        {
+          "category": "travel-flights",
+          "ratePct": 6.25,
+          "monthlyCapRs": 2000,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "HDFC SmartBuy"
+          ],
+          "pointValuePaisa": 50
+        },
+        {
+          "category": "travel-hotels",
+          "ratePct": 6.25,
+          "monthlyCapRs": 2000,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "HDFC SmartBuy"
+          ],
+          "pointValuePaisa": 50
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "hdfc-moneyback-plus",
+      "issuer": "HDFC",
+      "name": "HDFC MoneyBack+ Credit Card",
+      "network": "MASTERCARD",
+      "joiningFeeRs": 500,
+      "annualFeeRs": 500,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 50000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 0.2,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 20
+        },
+        {
+          "category": "online-shopping",
+          "ratePct": 2,
+          "monthlyCapRs": 500,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Flipkart",
+            "Amazon",
+            "Swiggy",
+            "Reliance Smart",
+            "BigBasket"
+          ],
+          "pointValuePaisa": 20
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "hdfc-swiggy",
+      "issuer": "HDFC",
+      "name": "Swiggy HDFC Bank Credit Card",
+      "network": "MASTERCARD",
+      "joiningFeeRs": 500,
+      "annualFeeRs": 500,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 200000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 1,
+          "monthlyCapRs": 500,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "dining",
+          "ratePct": 10,
+          "monthlyCapRs": 1500,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Swiggy app (Food",
+            "Instamart",
+            "Dineout",
+            "Genie)"
+          ],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "online-shopping",
+          "ratePct": 5,
+          "monthlyCapRs": 1500,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Apparel",
+            "Electronics",
+            "Department Stores",
+            "Online Pet Stores",
+            "Home Décor",
+            "Personal Care",
+            "Local Cabs",
+            "Entertainment",
+            "Pharmacies",
+            "Discount Stores",
+            "Cleartrip"
+          ],
+          "pointValuePaisa": 100
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "hdfc-tata-neu-infinity",
+      "issuer": "HDFC",
+      "name": "Tata Neu Infinity HDFC Bank Credit Card",
+      "network": "RUPAY",
+      "joiningFeeRs": 1499,
+      "annualFeeRs": 1499,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 300000,
+      "forexMarkupPct": 2,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 1.5,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "groceries",
+          "ratePct": 1.5,
+          "monthlyCapRs": 2000,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "insurance",
+          "ratePct": 1.5,
+          "monthlyCapRs": 2000,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "LIC and other insurers",
+            "paid via bill payments on the Tata Neu app"
+          ],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "online-shopping",
+          "ratePct": 5,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Tata Neu",
+            "BigBasket",
+            "Croma",
+            "Tata CLiQ",
+            "1mg",
+            "Air India"
+          ],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "utilities",
+          "ratePct": 1.5,
+          "monthlyCapRs": 2000,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 100
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "hdfc-tata-neu-plus",
+      "issuer": "HDFC",
+      "name": "Tata Neu Plus HDFC Bank Credit Card",
+      "network": "RUPAY",
+      "joiningFeeRs": 499,
+      "annualFeeRs": 499,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 100000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 1,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "groceries",
+          "ratePct": 1,
+          "monthlyCapRs": 1000,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "insurance",
+          "ratePct": 1,
+          "monthlyCapRs": 2000,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "LIC and other insurers",
+            "paid via bill payments on the Tata Neu app"
+          ],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "online-shopping",
+          "ratePct": 2,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Tata Neu",
+            "BigBasket",
+            "Croma",
+            "Tata CLiQ",
+            "1mg"
+          ],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "utilities",
+          "ratePct": 1,
+          "monthlyCapRs": 2000,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 100
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "hdfc-indianoil",
+      "issuer": "HDFC",
+      "name": "IndianOil HDFC Bank Credit Card",
+      "network": "RUPAY",
+      "joiningFeeRs": 500,
+      "annualFeeRs": 500,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 50000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 0.64,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 96
+        },
+        {
+          "category": "fuel",
+          "ratePct": 4.8,
+          "monthlyCapRs": 144,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Indian Oil (IOCL)"
+          ],
+          "pointValuePaisa": 96
+        },
+        {
+          "category": "groceries",
+          "ratePct": 4.8,
+          "monthlyCapRs": 96,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 96
+        },
+        {
+          "category": "utilities",
+          "ratePct": 4.8,
+          "monthlyCapRs": 96,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 96
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "sbi-simply-click",
+      "issuer": "SBI",
+      "name": "SBI SimplyCLICK Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 499,
+      "annualFeeRs": 499,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 100000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 0.2,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "online-shopping",
+          "ratePct": 2.5,
+          "monthlyCapRs": 2500,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Apollo 24x7",
+            "BookMyShow",
+            "Cleartrip",
+            "Dominos",
+            "IGP",
+            "Myntra",
+            "Netmeds",
+            "Swiggy",
+            "Yatra",
+            "Gyftr",
+            "Tata CLiQ"
+          ],
+          "pointValuePaisa": 25
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "sbi-simply-save",
+      "issuer": "SBI",
+      "name": "SBI SimplySAVE Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 499,
+      "annualFeeRs": 499,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 100000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 0.17,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "dining",
+          "ratePct": 1.67,
+          "monthlyCapRs": 1250,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "groceries",
+          "ratePct": 1.67,
+          "monthlyCapRs": 1250,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "sbi-cashback",
+      "issuer": "SBI",
+      "name": "SBI Cashback Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 999,
+      "annualFeeRs": 999,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 200000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 1,
+          "monthlyCapRs": 2000,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "online-shopping",
+          "ratePct": 5,
+          "monthlyCapRs": 2000,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 100
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "sbi-bpcl",
+      "issuer": "SBI",
+      "name": "BPCL SBI Card",
+      "network": "VISA",
+      "joiningFeeRs": 499,
+      "annualFeeRs": 499,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 100000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 0.25,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "dining",
+          "ratePct": 1.25,
+          "monthlyCapRs": 1250,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "fuel",
+          "ratePct": 3.25,
+          "monthlyCapRs": 325,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Bharat Petroleum (BPCL)"
+          ],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "groceries",
+          "ratePct": 1.25,
+          "monthlyCapRs": 1250,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "sbi-prime",
+      "issuer": "SBI",
+      "name": "SBI Card PRIME",
+      "network": "MASTERCARD",
+      "joiningFeeRs": 2999,
+      "annualFeeRs": 2999,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 300000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 0.5,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "dining",
+          "ratePct": 2.5,
+          "monthlyCapRs": 1875,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "groceries",
+          "ratePct": 2.5,
+          "monthlyCapRs": 1875,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "All grocery and departmental stores except Metro Cash & Carry",
+            "Reliance Market and Walmart",
+            "which SBI names as ineligible for the accelerated rate"
+          ],
+          "pointValuePaisa": 25
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "icici-amazon-pay",
+      "issuer": "ICICI",
+      "name": "Amazon Pay ICICI Bank Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 0,
+      "annualFeeRs": 0,
+      "lifetimeFree": true,
+      "feeWaiverSpendRs": null,
+      "forexMarkupPct": 1.99,
+      "rewards": [
+        {
+          "category": "online-shopping",
+          "ratePct": 5,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Amazon"
+          ],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "other",
+          "ratePct": 1,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 100
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "icici-coral",
+      "issuer": "ICICI",
+      "name": "ICICI Bank Coral Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 500,
+      "annualFeeRs": 500,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 150000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "utilities",
+          "ratePct": 0.25,
+          "monthlyCapRs": 100,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "other",
+          "ratePct": 0.5,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "groceries",
+          "ratePct": 0.5,
+          "monthlyCapRs": 100,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "insurance",
+          "ratePct": 0.25,
+          "monthlyCapRs": 100,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "icici-rubyx",
+      "issuer": "ICICI",
+      "name": "ICICI Bank Rubyx Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 3000,
+      "annualFeeRs": 2000,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 300000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 0.5,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "groceries",
+          "ratePct": 0.5,
+          "monthlyCapRs": 200,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "insurance",
+          "ratePct": 0.25,
+          "monthlyCapRs": 200,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "utilities",
+          "ratePct": 0.25,
+          "monthlyCapRs": 200,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked; dropped dataset rows with no Sec 8.1 category: ['INTERNATIONAL']"
+    },
+    {
+      "id": "icici-hpcl-super-saver",
+      "issuer": "ICICI",
+      "name": "ICICI HPCL Super Saver Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 500,
+      "annualFeeRs": 500,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 150000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 0.5,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "fuel",
+          "ratePct": 4,
+          "monthlyCapRs": 200,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Hindustan Petroleum (HPCL)"
+          ],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "utilities",
+          "ratePct": 5,
+          "monthlyCapRs": 100,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "groceries",
+          "ratePct": 5,
+          "monthlyCapRs": 100,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "insurance",
+          "ratePct": 0.5,
+          "monthlyCapRs": 200,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "axis-flipkart",
+      "issuer": "AXIS",
+      "name": "Axis Bank Flipkart Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 500,
+      "annualFeeRs": 500,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 350000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 1,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "dining",
+          "ratePct": 4,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Swiggy food delivery"
+          ],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "online-shopping",
+          "ratePct": 5,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Flipkart",
+            "Cleartrip"
+          ],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "online-shopping",
+          "ratePct": 7.5,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Myntra"
+          ],
+          "pointValuePaisa": 100
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "axis-ace",
+      "issuer": "AXIS",
+      "name": "Axis Bank ACE Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 499,
+      "annualFeeRs": 499,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 200000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 1.5,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "dining",
+          "ratePct": 4,
+          "monthlyCapRs": 500,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Swiggy",
+            "Zomato",
+            "Ola"
+          ],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "utilities",
+          "ratePct": 5,
+          "monthlyCapRs": 500,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Google Pay"
+          ],
+          "pointValuePaisa": 100
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "axis-myzone",
+      "issuer": "AXIS",
+      "name": "Axis Bank MyZone Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 500,
+      "annualFeeRs": 500,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": null,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 0.4,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 20
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "axis-neo",
+      "issuer": "AXIS",
+      "name": "Axis Bank Neo Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 250,
+      "annualFeeRs": 250,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": null,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 0.1,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 20
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "axis-airtel",
+      "issuer": "AXIS",
+      "name": "Axis Bank Airtel Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 500,
+      "annualFeeRs": 500,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 200000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 1,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "dining",
+          "ratePct": 10,
+          "monthlyCapRs": 400,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Zomato",
+            "District Movies"
+          ],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "groceries",
+          "ratePct": 10,
+          "monthlyCapRs": 200,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Blinkit"
+          ],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "utilities",
+          "ratePct": 25,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Airtel Thanks app"
+          ],
+          "pointValuePaisa": 100
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "kotak-league-platinum",
+      "issuer": "KOTAK",
+      "name": "Kotak League Platinum Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 499,
+      "annualFeeRs": 499,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 50000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 0.27,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 10
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "kotak-811",
+      "issuer": "KOTAK",
+      "name": "Kotak 811 #DreamDifferent Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 250,
+      "annualFeeRs": 0,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": null,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 0.2,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 20
+        },
+        {
+          "category": "online-shopping",
+          "ratePct": 0.4,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 20
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "idfc-millennia",
+      "issuer": "IDFC",
+      "name": "IDFC FIRST Millennia Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 0,
+      "annualFeeRs": 0,
+      "lifetimeFree": true,
+      "feeWaiverSpendRs": null,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 0.38,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "dining",
+          "ratePct": 1.25,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "travel-flights",
+          "ratePct": 1.25,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "travel-hotels",
+          "ratePct": 1.25,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "utilities",
+          "ratePct": 0.13,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked; dropped dataset rows with no Sec 8.1 category: ['INTERNATIONAL']"
+    },
+    {
+      "id": "idfc-select",
+      "issuer": "IDFC",
+      "name": "IDFC FIRST Select Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 0,
+      "annualFeeRs": 0,
+      "lifetimeFree": true,
+      "feeWaiverSpendRs": null,
+      "forexMarkupPct": 1.99,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 0.38,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "dining",
+          "ratePct": 1.25,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "travel-flights",
+          "ratePct": 1.25,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "travel-hotels",
+          "ratePct": 1.25,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "utilities",
+          "ratePct": 0.13,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked; dropped dataset rows with no Sec 8.1 category: ['INTERNATIONAL']"
+    },
+    {
+      "id": "idfc-power",
+      "issuer": "IDFC",
+      "name": "IDFC FIRST Power Credit Card",
+      "network": "RUPAY",
+      "joiningFeeRs": 199,
+      "annualFeeRs": 199,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 50000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 0.33,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "fuel",
+          "ratePct": 3.5,
+          "monthlyCapRs": 175,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Hindustan Petroleum (HPCL)"
+          ],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "utilities",
+          "ratePct": 2.5,
+          "monthlyCapRs": 1000,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "au-lit",
+      "issuer": "AU",
+      "name": "AU LIT Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 0,
+      "annualFeeRs": 0,
+      "lifetimeFree": true,
+      "feeWaiverSpendRs": null,
+      "forexMarkupPct": 3.49,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 0.25,
+          "monthlyCapRs": 2500,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 25
+        },
+        {
+          "category": "groceries",
+          "ratePct": 5,
+          "monthlyCapRs": 500,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Active paid benefit pack"
+          ],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "online-shopping",
+          "ratePct": 2.5,
+          "monthlyCapRs": 2500,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [
+            "Active paid benefit pack"
+          ],
+          "pointValuePaisa": 25
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "indusind-platinum",
+      "issuer": "INDUSIND",
+      "name": "IndusInd Bank Platinum Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 0,
+      "annualFeeRs": 0,
+      "lifetimeFree": true,
+      "feeWaiverSpendRs": null,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 0.4,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 40
+        },
+        {
+          "category": "education",
+          "ratePct": 0.19,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 40
+        },
+        {
+          "category": "government",
+          "ratePct": 0.19,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 40
+        },
+        {
+          "category": "insurance",
+          "ratePct": 0.19,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 40
+        },
+        {
+          "category": "rent",
+          "ratePct": 0.19,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 40
+        },
+        {
+          "category": "utilities",
+          "ratePct": 0.19,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 40
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "amex-mrcc",
+      "issuer": "AMEX",
+      "name": "American Express Membership Rewards Credit Card",
+      "network": "AMEX",
+      "joiningFeeRs": 1000,
+      "annualFeeRs": 4500,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 150000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 1,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 50
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    },
+    {
+      "id": "onecard",
+      "issuer": "BOB",
+      "name": "OneCard Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 0,
+      "annualFeeRs": 0,
+      "lifetimeFree": true,
+      "feeWaiverSpendRs": null,
+      "forexMarkupPct": 1,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 0.2,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 10
+        },
+        {
+          "category": "online-shopping",
+          "ratePct": 1,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": [],
+          "pointValuePaisa": 10
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+    }
+  ]
+}
