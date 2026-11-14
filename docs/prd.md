@@ -212,12 +212,16 @@ type Card = {
   verified: { on: string; sourceUrl: string };   // ISO date
 };
 
+type Category = "dining" | "groceries" | /* ... the Sec 8.1 list */ "other";
+
 type RewardRule = {
-  category: string;                      // from the category list in Sec 8.1
+  category: Category;                    // Sec 8.1
   ratePct: number;                       // effective value, after point value
-  monthlyCapRs: number | null;           // cap on reward value or on spend (see capBasis)
+  monthlyCapRs: number | null;           // cap per capPeriod, on reward value or on spend (see capBasis)
+  capPeriod: "month" | "quarter";        // default "month"
   capBasis: "reward" | "spend" | null;
-  exclusions: string[];                  // e.g. "rent", "wallet", "fuel", "govt"
+  exclusions: Category[];                // e.g. "rent", "wallet-load", "fuel", "government"
+  merchants: string[];                   // empty = whole category; else only at these merchants
   pointValuePaisa: number | null;
 };
 
@@ -226,6 +230,20 @@ type Milestone = {
   spendRs: number;
   benefit: string;                       // plain text
   benefitValueRs: number | null;
+};
+
+type LoungeRule = {
+  domesticPerQuarter: number | null;
+  domesticPerYear: number | null;
+  internationalPerYear: number | null;
+  spendGateRs: number | null;            // spend needed to unlock the visits
+  gatePeriod: "month" | "quarter" | "3-months" | null;
+};
+
+type UpiRule = {
+  supported: boolean;                    // RuPay cards only
+  ratePct: number | null;                // null = base rate applies
+  excluded: Category[];
 };
 ```
 
