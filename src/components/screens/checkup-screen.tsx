@@ -12,7 +12,8 @@ import type { HeldCard, UserCard } from "@/engine/types";
 import { todayUtc } from "@/lib/age";
 import { catalogue } from "@/lib/catalogue";
 import { useProfileUser } from "@/lib/use-user";
-import { watchCards } from "@/lib/user-data";
+import { impactLine } from "@/lib/alert-copy";
+import { type UserAlert, watchAlerts, watchCards } from "@/lib/user-data";
 
 const toHeld = (cards: UserCard[]): HeldCard[] =>
   cards.flatMap((u) => {
@@ -25,9 +26,15 @@ export function CheckupScreen() {
   const user = useProfileUser();
   const [cards, setCards] = useState<UserCard[] | null>(null);
 
+  const [alerts, setAlerts] = useState<UserAlert[]>([]);
+
   useEffect(() => {
     if (!user) return;
     return watchCards(user.uid, setCards);
+  }, [user]);
+  useEffect(() => {
+    if (!user) return;
+    return watchAlerts(user.uid, setAlerts);
   }, [user]);
 
   if (!user || cards === null)
@@ -90,6 +97,29 @@ export function CheckupScreen() {
               </li>
             ))}
           </ol>
+        </div>
+      )}
+
+      {alerts.length > 0 && (
+        <div className="space-y-3">
+          <h2 className="font-medium">Changes to your cards</h2>
+          {alerts.map((a) => (
+            <article
+              key={a.alertId}
+              className="space-y-1 rounded-lg border-l-4 border-warning bg-card p-3 text-sm"
+            >
+              <p className="text-muted-foreground">
+                {catalogue.cards.find((c) => c.id === a.cardId)?.name}
+              </p>
+              <p className="font-medium">{a.title}</p>
+              <p>Before: {a.before ?? "not stated"}</p>
+              <p>After: {a.after ?? "not stated"}</p>
+              <p>{impactLine(a.rupeesPerYear)}</p>
+              <a className="underline" href={a.issuerUrl}>
+                The bank&apos;s notice
+              </a>
+            </article>
+          ))}
         </div>
       )}
 

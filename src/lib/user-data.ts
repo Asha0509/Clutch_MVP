@@ -82,3 +82,22 @@ export async function saveCard(uid: string, card: UserCard): Promise<void> {
 export async function removeCard(uid: string, cardId: string): Promise<void> {
   await deleteDoc(doc(db, "users", uid, "cards", cardId));
 }
+
+// Approved changes on the user's cards, written by approveAlert (PRD Sec 10.3).
+export type UserAlert = {
+  alertId: string;
+  cardId: string;
+  title: string;
+  before: string | null;
+  after: string | null;
+  issuerUrl: string;
+  rupeesPerYear: number | null;
+};
+export function watchAlerts(
+  uid: string,
+  onChange: (alerts: UserAlert[]) => void,
+): () => void {
+  return onSnapshot(collection(db, "users", uid, "alerts"), (snap) =>
+    onChange(snap.docs.map((d) => d.data() as UserAlert)),
+  );
+}
