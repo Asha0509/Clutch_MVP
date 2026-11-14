@@ -158,7 +158,7 @@ This is the "what kind of logins" answer. Keep it boring.
 - **Google sign-in only**, through Firebase Auth. Reasons: fastest for a 3-minute first run, works on every phone, no OTP SMS cost, no password to leak. Phone OTP is avoided because of SMS cost and DLT registration.
 - Request only `openid`, `email`, `profile`. No Gmail, Drive or other scopes. Requesting Gmail read scope would trigger Google's restricted-scope security assessment.
 - Sessions use Firebase ID tokens, verified in every callable function (`context.auth` must be present).
-- Under-18 users: ask date of birth after sign-in; if under 18, show a "ask a parent" screen and do not create a profile (DPDP parental consent, Sec 11).
+- Under-18 users: ask birth year and month after sign-in (Founder decision, 2026-11-14). The month of the 18th birthday counts as under 18. If under 18, show an "ask a parent" screen and do not create a profile (DPDP parental consent, Sec 11). Firestore rules enforce this.
 
 ### 6.2 For the Founder (admin)
 
@@ -251,7 +251,7 @@ type UpiRule = {
 
 | Path | Fields | Notes |
 |---|---|---|
-| `users/{uid}` | createdAt, displayName, email, dobYear, locale, spendProfile? (monthly Rs by category) | email only for sending alerts |
+| `users/{uid}` | createdAt, displayName, email, dobYear, dobMonth, locale, spendProfile? (monthly Rs by category) | email only for sending alerts |
 | `users/{uid}/cards/{id}` | cardId, last4?, openedOn?, anniversaryMonth, feePaidOn?, ytdSpendRs?, quarterSpendRs?, monthSpendRs?, pointsBalance?, pointsExpireOn?, statementDay?, dueDay?, capUsedRs? (by category), loungeVisitsPerYear?, loungeValueRs? | all user entered; the last five feed the engine (Sec 8.2) |
 | `users/{uid}/alerts/{id}` | alertId, cardId, readAt?, sentVia[] | fan-out copy |
 | `users/{uid}/events/{id}` | type, at, meta | product analytics, own data only |

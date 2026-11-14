@@ -31,7 +31,7 @@ Founder: Asha Jyothi Boddu. Refer to her in venture materials as "Founder" only.
 
 - Users: Google sign-in via Firebase Auth only. Scopes `openid email profile`, nothing else. No passwords, no phone OTP.
 - Founder admin: same sign-in plus custom claim `admin: true` (set by `scripts/make-admin.ts <uid>`, run by the Founder). Check the claim on the server for every admin route and callable.
-- Under-18 gate: ask birth year after sign-in; under 18 means show the "ask a parent" screen and create no profile.
+- Under-18 gate: ask birth year and month after sign-in; the month of the 18th birthday counts as under 18. Under 18 means show the "ask a parent" screen and create no profile. Firestore rules enforce it (`isAdult()`).
 - Work against the Firebase emulators. Do not log in to Firebase, gcloud, Google or any bank. Do not run `firebase deploy`, `gcloud` mutations or `gh repo create` unless the user asks in that message. The Founder logs in by hand.
 - If a task seems to need a production credential, stop and tell the Founder which one and why.
 
