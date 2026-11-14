@@ -7,13 +7,13 @@ Founder: Asha Jyothi Boddu. Refer to her in venture materials as "Founder" only.
 # Commands
 
 - Install: `pnpm install`
-- Dev: `pnpm dev` (app) and `pnpm emulators` (Firebase Auth, Firestore, Functions)
+- Dev: `pnpm dev` (app). `pnpm emulators` only for the server design (Functions, Firestore rules)
 - Typecheck: `pnpm typecheck` (also run by the Stop hook)
 - Lint and format: `pnpm lint` / `pnpm format`
 - All unit tests: `pnpm test`
 - One test file: `pnpm vitest run path/to/file.test.ts`
 - Rules tests (needs emulator): `pnpm test:rules`
-- E2E: `pnpm e2e` (slow, not in hooks)
+- E2E: `pnpm e2e` (production build; demo, offline and the no-sign-in prototype; slow, not in hooks)
 - Validate catalogue: `pnpm catalogue:check`
 - Re-run setup safely: `./setup.sh` (idempotent; `./setup.sh --help`)
 
@@ -29,9 +29,9 @@ Founder: Asha Jyothi Boddu. Refer to her in venture materials as "Founder" only.
 
 # Auth and logins
 
-- Users: Google sign-in via Firebase Auth only. Scopes `openid email profile`, nothing else. No passwords, no phone OTP.
-- Founder admin: same sign-in plus custom claim `admin: true` (set by `scripts/make-admin.ts <uid>`, run by the Founder). Check the claim on the server for every admin route and callable.
-- Under-18 gate: ask birth year and month after sign-in; the month of the 18th birthday counts as under 18. Under 18 means show the "ask a parent" screen and create no profile. Firestore rules enforce it (`isAdult()`).
+- Prototype (Founder decision 2026-11-14): no sign-in. A visitor's cards, spend and approved alerts live in their own browser (`src/lib/local-store.ts`, zod-validated on read). Only an "is an adult" flag is stored, never the birth date. The Founder console at `/admin` is open in the prototype and writes only to that browser.
+- Under-18 gate: ask birth year and month first; the month of the 18th birthday counts as under 18. Under 18 means the "ask a parent" screen and nothing stored.
+- Production design, kept for after the pilot: Google sign-in via Firebase Auth only (scopes `openid email profile`), admin custom claim `admin: true` checked on the server, Firestore rules enforcing `isAdult()`. `functions/`, `firestore.rules` and `pnpm test:rules` stay green.
 - Work against the Firebase emulators. Do not log in to Firebase, gcloud, Google or any bank. Do not run `firebase deploy`, `gcloud` mutations or `gh repo create` unless the user asks in that message. The Founder logs in by hand.
 - If a task seems to need a production credential, stop and tell the Founder which one and why.
 

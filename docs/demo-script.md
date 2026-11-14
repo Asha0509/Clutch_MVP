@@ -1,17 +1,28 @@
 # Clutch investor demo
 
-A 2-minute walk through demo mode (PRD Sec 3.3, Sec 16.3). The person in the demo is made up; the three cards, their rules and every rupee figure are real outputs of the rules engine on each bank's published terms.
+Two ways to show Clutch (PRD Sec 3.3, Sec 16.3). **The working prototype** is the main one: no sign-in, the investor can type their own cards, and every figure is computed live. **The guided demo** is the backup: five fixed screens with presenter notes that work with Wi-Fi off.
 
 ## Before the meeting (laptop)
 
 1. Once: `pnpm install`
 2. `pnpm build && pnpm start`, then open http://localhost:3000
-3. Click **See the 2-minute demo**. Each step has **Presenter notes** with the line to say.
-4. After one full click-through the demo works with Wi-Fi off. Optional: in Chrome, use "Install Clutch" so it opens like an app, straight into the demo.
+3. Open the guided demo once so it works offline later.
+4. Video: `pnpm demo:record` saves `demo-recording/clutch-demo.webm` (about 1 minute 20 seconds, no sound, paced for a voice-over). It walks the prototype below.
 
-Recording a video: `pnpm demo:record` saves `demo-recording/clutch-demo.webm` (about 1 minute 15 seconds, no sound, paced for a voice-over).
+## Prototype talk track (about 2 minutes)
 
-## Talk track
+| Screen          | Do                                                                                                                | Say                                                                                                                                                                                 |
+| --------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Landing         | Click **Try it with your cards**, answer the age question                                                         | No sign-in, no bank login, no card numbers. Your cards stay in this browser.                                                                                                        |
+| My cards        | **Fill with an example** (or let the investor pick their own cards)                                               | Three real cards; the person and spend are examples. Every card fact is checked against the bank's own terms.                                                                       |
+| Checkup         | Open **How we worked out Rs 1,600**                                                                               | Rs 1,600 at risk, and here is the arithmetic: 3,000 points × 20 paise, and a fee-waiver pace that ends near Rs 85,396, short of Rs 1,00,000. A rules engine, not a chatbot.         |
+| Live change     | My cards, Millennia, **Add details**, spend so far 100000, save; back to Checkup                                  | Enter what you have actually spent and the figure moves: the fee is no longer at risk, Rs 600 is.                                                                                   |
+| Pay with        | Rs 2,000, groceries, UPI                                                                                          | Only the RuPay credit card can take UPI. Switch to card and the ranking changes.                                                                                                    |
+| Verdict         |                                                                                                                   | From this person's own month: Millennia costs about Rs 40 a year more than it gives back.                                                                                           |
+| Founder console | Open the MoneyBack+ "Earn rate cut" row, choose reward rate, online shopping, 0.267 to 0.2, tick checked, approve | This is the live public log of card changes. Nothing reaches a user until I check it against the bank's notice. Approved, it is priced on this person's spend: about Rs 120 a year. |
+| Checkup         |                                                                                                                   | It is on their checkup now, with the bank's notice. Open the checkup in a second tab before approving and it appears there without a reload. This is a pilot, and revenue is Rs 0.  |
+
+## Guided demo talk track (backup, offline)
 
 | Time | Screen        | Say                                                                                                                                                                                                                                             |
 | ---- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -36,7 +47,7 @@ Recording a video: `pnpm demo:record` saves `demo-recording/clutch-demo.webm` (a
 - **Users?** None yet. The plan is a 4-week pilot of 20 to 50 people (PRD Sec 12).
 - **Revenue?** Rs 0 today. The hypothesis is labelled referral fees when a user chooses to look for a better card; partner terms are not yet confirmed.
 - **Why not just CRED or CardAdvisor?** CardAdvisor publishes card data and alerts; Clutch works from the cards a person actually holds and their own spend, and prices each change for them.
-- **Privacy?** No bank login, no SMS or email reading, no card numbers. Consent is recorded per purpose and can be withdrawn.
+- **Privacy?** No bank login, no SMS or email reading, no card numbers. In the prototype nothing leaves the browser; the pilot records consent per purpose and it can be withdrawn.
 - **Does AI make up the numbers?** No. Every rupee figure comes from a tested rules engine; the language model is never used for money.
 
 ## Do not say
@@ -45,5 +56,5 @@ Guaranteed savings; best card in India; instant or real-time alerts (the promise
 
 ## Built and parked
 
-Built and shown: catalogue of 9 verified cards, checkup, pay with, alert pipeline with Founder approval, verdict, demo mode, offline install.
-Parked for after funding: reminders and push, referral flow, delete and export, statement upload, deployment, the other 21 cards.
+Built and shown: a working no-sign-in prototype on the visitor's own cards, catalogue of 9 verified cards, checkup with the engine's working, due-date and expiry reminders in the app, pay with (UPI on RuPay), verdict, the live change log with Founder approval, export and delete of the visitor's data, guided demo, offline install. Built but not deployed: the pilot backend (Google sign-in, Firestore rules, Cloud Functions, email).
+Parked for after funding: push notifications, referral flow, statement upload, deployment, the other 21 cards.

@@ -151,6 +151,8 @@ logs/                      JSONL run logs (gitignored except .gitkeep)
 
 ## Sec 6. Login and auth design
 
+> **Prototype note (Founder decision, 14 Nov 2026):** the investor prototype has no sign-in. Data stays in the visitor's browser, the age check still runs first, and the Founder console approves changes into that browser. The design below is the production plan for the pilot.
+
 This is the "what kind of logins" answer. Keep it boring.
 
 ### 6.1 For users
@@ -416,6 +418,8 @@ Analytics: own events collection only (no third-party trackers in the MVP).
 ---
 
 ## Sec 13. Build order and acceptance criteria
+
+> **Status, 14 Nov 2026 (prototype):** steps 1, 3, 4, 5, 6 (approval in the browser; email path built in `functions/`), 8 without the referral flow, 9, and 10's export and delete (browser data) are done. Step 7 is in-app only (due-date and expiry reminders on the checkup, no push). Steps 2 and 12 are built or parked as the production path. Step 11 is not started.
 
 Target: 3 to 4 weeks, one developer (the Founder with Claude Code). Each step ends with tests green and a build-log entry.
 

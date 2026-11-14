@@ -18,48 +18,58 @@ payment, and what a bank's rule change means for them.
 Typecheck, lint, unit tests, Firestore security-rules tests and the
 catalogue check run on every push.
 
-**Status:** pilot-stage MVP built for investor showcase. 9 credit cards
-checked field by field against each bank's own terms. No users yet;
-revenue Rs 0. Full spec: [docs/prd.md](docs/prd.md).
+**Status:** a working, pilot-stage prototype. 9 credit cards checked
+field by field against each bank's own terms. No sign-in: anyone can open it
+and use it on their own cards. No users yet; revenue Rs 0. Full spec:
+[docs/prd.md](docs/prd.md).
 
-### Take the 2-minute demo
+### Try it with your cards
 
-Press **See the 2-minute demo** on the landing page. A made-up person holds
-three real cards (HDFC MoneyBack+, HDFC Millennia, Tata Neu Infinity). The
-person and their spend are examples; every rupee figure on screen is an
-output of the rules engine on the banks' published terms. Each step has
-**Presenter notes** with the line to say. After one visit the demo works
-with Wi-Fi off.
+Press **Try it with your cards** on the landing page. One question (birth
+year and month; under-18s are turned away and nothing is stored), then:
 
-**1. The checkup.** One number: Rs 1,600 at risk across 3 cards, and the two
-things to fix first.
+1. **My cards.** Pick from the catalogue and add what you know: fee month,
+   spend so far, points and their expiry date, statement and due days, and a
+   typical month of spend by category. Or press **Fill with an example**.
+2. **Checkup.** Rupees at risk across your cards, the fixes to do first, and
+   **How we worked out Rs X**: the engine's arithmetic for every rupee.
+   Fee-waiver, milestone and lounge bars, due dates and points expiry per card.
+   It recomputes as you edit.
+3. **Pay with.** Category, amount, card or UPI: your best card, the runner-up,
+   and the cards that cannot take the payment.
+4. **Verdict.** Keep, downgrade or close, from your own typical month.
+5. **Founder console.** The live public change log of Indian credit cards,
+   cut to the cards Clutch covers. Approve a change (with its notice link and
+   the before and after) and it is priced on your spend and appears on a
+   checkup open in another tab, without a reload.
 
-![Checkup: Rs 1,600 at risk, a fee that can still be waived and points about to lapse](docs/images/demo-checkup.png)
+Your data stays in your browser. **Download my data** and **Clear my data**
+are on My cards.
 
-**2. A change to a card you hold.** A real change from the public feed (HDFC
-MoneyBack+ earn rate cut by about 25% from 15 May 2026), priced on this
-person's spend, with a link to the bank's notice.
+![Checkup on your own cards: rupees at risk with the engine's working, fixes, an approved change and per-card bars](docs/images/app-checkup.png)
 
-![A change: before and after, the rupee effect on this person's spend, and the bank's notice](docs/images/demo-change.png)
+![Founder console: the live change feed, one row per change, an approval priced on the visitor's spend](docs/images/app-console.png)
 
-**3. Fee waiver.** Rs 38,000 more spend in 100 days waives the Rs 1,000 fee,
-and the person is behind pace.
+![Pay with: UPI on a RuPay credit card, runner-up and cards that cannot be used](docs/images/app-pay.png)
 
-![Fee waiver: progress bar, rupees still needed, days left](docs/images/demo-waiver.png)
+![Verdict from the visitor's own typical month](docs/images/app-verdict.png)
 
-**4. Pay with.** Groceries, Rs 2,000, by UPI: only the RuPay credit card can
-take it. Switch to card and the ranking changes live.
-
-![Pay with: which of your own cards to use for this payment, and which cannot be used](docs/images/demo-pay.png)
-
-**5. Verdict.** Keep, downgrade or close, from the person's own spend.
-Millennia costs about Rs 40 a year more than it gives back.
-
-![Verdict: keep or downgrade for each card, with reasons and caveats](docs/images/demo-verdict.png)
-
-Every screen is mobile first (checked at 375px and 1280px):
+Mobile first (checked at 375px and 1280px):
 
 <img src="docs/images/mobile-checkup.png" alt="The checkup on a 375px phone screen" width="300">
+
+### Or take the guided 2-minute demo
+
+**Guided 2-minute demo** walks a made-up person with three real cards
+through five screens, with presenter notes, and works with Wi-Fi off.
+
+| Step                                            | Screen                                     |
+| ----------------------------------------------- | ------------------------------------------ |
+| 1. Checkup: Rs 1,600 at risk                    | ![Checkup](docs/images/demo-checkup.png)   |
+| 2. A real change, priced at about Rs 120 a year | ![A change](docs/images/demo-change.png)   |
+| 3. Rs 38,000 more in 100 days waives the fee    | ![Fee waiver](docs/images/demo-waiver.png) |
+| 4. Only the RuPay card takes UPI                | ![Pay with](docs/images/demo-pay.png)      |
+| 5. Keep, downgrade, keep                        | ![Verdict](docs/images/demo-verdict.png)   |
 
 **Contents:** [Problem](#problem-statement) · [Solution](#solution) · [File structure](#file-structure) · [User flow](#user-flow) · [LLD](#low-level-design-lld) · [HLD](#high-level-design-hld) · [Scaling](#how-it-would-scale) · [USP](#usp-what-is-different-and-why-it-is-better) · [Tools](#tools-and-software-used) · [Principles](#principles-used) · [Requirements](#functional-and-non-functional-requirements) · [Results](#results) · [Real and made up](#whats-real-and-whats-made-up) · [Known gaps](#known-gaps) · [Docs](#docs-tests-and-logs--where-everything-is) · [CI](#engineering-quality-and-ci) · [Setup](#setup)
 
@@ -77,30 +87,34 @@ Every screen is mobile first (checked at 375px and 1280px):
 
 ## Solution
 
-A rules engine over a hand-checked card catalogue, and a small app around it.
+A rules engine over a hand-checked card catalogue, and a working app around it.
 
 - **Deterministic where money is involved.** Every rupee figure comes from
   `src/engine/`: pure TypeScript, no network, no clock, no randomness
   (enforced by a lint rule). Integer rupees, rounded down so a saving is
   never overstated.
+- **Shows its working.** Every rupee at risk comes with the arithmetic
+  behind it, written by the engine, not typed into the copy.
 - **Facts from the bank, not from memory.** Each card field is checked
   against the bank's own terms, with page references in
   `data/catalogue/checklist.md`. Unknown fields stay `null` rather than
   guessed.
-- **A human approves every change alert.** A daily job reads the public
-  change feed and only writes _pending_ alerts. The Founder approves each
-  one against the bank's notice in the admin console; only then is it
-  priced per user and sent to users who consented.
+- **A human approves every change alert.** The public change log is read
+  live and every entry waits as _pending_. The Founder approves each one
+  against the bank's notice; only then is it priced on each holder's own
+  spend and delivered.
 - **The language model never computes money.** Gemini is planned only for
   reading user text and wording alerts from facts the engine already
   computed.
-- **No sensitive access.** No bank login, no SMS or email reading, no card
-  numbers. Last four digits are optional.
+- **No sensitive access.** No sign-in, no bank login, no SMS or email
+  reading, no card numbers. Last four digits are optional. In the
+  prototype everything stays in the visitor's browser.
 
 **What the engine computes** (`src/engine/`): best card for a payment
-(including UPI on RuPay credit cards) · fee-waiver and milestone pace ·
-points expiry · rupees at risk · keep, downgrade or close verdict · rupee
-impact of a rule change on a person's spend.
+(including UPI on RuPay credit cards) · fee-waiver, milestone and lounge pace
+· points expiry · statement and due dates · rupees at risk, with its working
+· keep, downgrade or close verdict · rupee impact of a rule change on a
+person's spend.
 
 ## File structure
 
@@ -117,68 +131,69 @@ Clutch_MVP/
 ├── package.json, pnpm-lock.yaml, pnpm-workspace.yaml   app + functions workspace
 ├── next.config.ts, tsconfig.json, components.json, eslint.config.mjs
 ├── vitest.config.ts, vitest.rules.config.ts            unit tests; security-rules tests
-├── playwright.config.ts                live-mode e2e on the emulators
-├── playwright.demo.config.ts           demo e2e + video recording on a production build
-├── firebase.json, firestore.rules, firestore.indexes.json
-├── .mcp.json                           Playwright MCP (headless) for UI checks
-├── .claude/                            reviewer agent, rules for engine and UI work, hooks
-├── .github/workflows/ci.yml            typecheck, lint, unit, rules, catalogue check
+├── playwright.config.ts               e2e on the production build (prototype, demo, offline, video)
+├── firebase.json, firestore.rules, firestore.indexes.json   pilot backend design (rules tested)
+├── .mcp.json                          Playwright MCP (headless) for UI checks
+├── .claude/                           reviewer agent, rules for engine and UI work, hooks
+├── .github/workflows/ci.yml           typecheck, lint, unit, rules, catalogue check
 ├── data/
 │   ├── catalogue/
 │   │   ├── catalogue.json             9 verified cards, validated with zod on load
 │   │   ├── draft.json                 cards not yet verified (never shown to users)
 │   │   ├── checklist.md               every field, its source document and page
 │   │   └── ATTRIBUTION.md             CardAdvisor dataset credit (CC BY 4.0)
-│   └── fixtures/                      sample of the public change feed, with its provenance
+│   ├── feed/snapshot.json             saved copy of the change log for the 9 cards (offline fallback)
+│   └── fixtures/                      change-feed test sample, with its provenance
 ├── src/
 │   ├── engine/                        the rules engine: pure, no I/O
 │   │   ├── types.ts                   zod schemas: Card, RewardRule, UserCard, Spend, Change
 │   │   ├── rewards.ts                 rule for a spend, reward in rupees, caps, point value
 │   │   ├── bestCard.ts                rank the user's own cards for one payment
 │   │   ├── progress.ts                fee-waiver and milestone progress and pace
-│   │   ├── expiry.ts                  points-expiry reminders
-│   │   ├── checkup.ts                 rupees at risk and the fixes to do first
+│   │   ├── expiry.ts                  points-expiry reminders (60, 30, 7 days)
+│   │   ├── due.ts                     statement and payment due dates (5, 2, 0 days)
+│   │   ├── checkup.ts                 rupees at risk, the fixes to do first, and the working
 │   │   ├── verdict.ts                 keep / downgrade / close from a spend profile
 │   │   ├── impact.ts                  rupee effect of a rule change on a person's spend
 │   │   ├── dates.ts                   card year and calendar periods (today passed in)
 │   │   └── format.ts                  formatRs, used only at the edge
 │   ├── lib/
-│   │   ├── demo.ts, demo-steps.ts     the demo person (dates relative to today) and step copy
+│   │   ├── local-store.ts             the visitor's data in the browser: zod-checked, shared across tabs, approve()
+│   │   ├── feed.ts                    change log to pending alerts (shared with the Cloud Function)
+│   │   ├── demo.ts, demo-steps.ts     the example person (dates relative to today) and demo step copy
 │   │   ├── catalogue.ts, held.ts      load the catalogue; join user cards to card facts
-│   │   ├── firebase.ts, user-data.ts  emulator-aware Firebase client; profile, cards, alerts
-│   │   ├── age.ts, notice.ts          under-18 gate; privacy notice and consent version
-│   │   └── alert-copy.ts, labels.ts, use-user.ts, utils.ts
+│   │   ├── age.ts, notice.ts          under-18 rule; consent purposes of the pilot design
+│   │   └── alert-copy.ts, labels.ts, utils.ts
 │   ├── components/
-│   │   ├── views/                     pure views shared by live mode and the demo
-│   │   ├── screens/                   live-mode wrappers that read Firestore
+│   │   ├── views/                     pure views shared by the prototype and the demo
+│   │   ├── screens/                   prototype screens on browser storage, and the age gate
 │   │   ├── demo/                      demo banner, stepper, presenter notes
-│   │   ├── sw-register.tsx            service worker (production only, for offline demo)
+│   │   ├── app-nav.tsx                prototype navigation
+│   │   ├── sw-register.tsx            service worker (production only, for the offline demo)
 │   │   └── ui/                        shadcn/ui components
 │   └── app/
-│       ├── page.tsx                   investor landing page
+│       ├── page.tsx                   landing page
+│       ├── start/                     age check
+│       ├── (app)/                     cards, checkup, pay, verdict, admin (Founder console)
+│       ├── api/changes/route.ts       live change log, cut to the catalogue, cached for an hour
 │       ├── demo/                      the 5-step guided demo
-│       ├── start/, cards/, checkup/, pay/   live mode: sign-in, age gate, consent, cards
-│       ├── admin/                     Founder console: approve or reject change alerts
 │       └── manifest.ts, layout.tsx, globals.css
-├── functions/src/                     Firebase Cloud Functions
-│   ├── index.ts                       ingestChangeFeed (daily), approveAlert (admin only)
-│   ├── feed.ts                        change feed to pending alerts
-│   ├── approve.ts                     input schema for approve / reject / resume
-│   └── email.ts                       alert email from engine facts
+├── functions/src/                     Cloud Functions for the pilot: daily feed ingest, admin-only approval, email
 ├── public/sw.js, public/icons/        offline cache for the demo; app icons
 ├── scripts/
 │   ├── check-catalogue.ts             validate the catalogue (pnpm catalogue:check)
-│   └── make-admin.ts                  set the admin claim (run by the Founder)
+│   ├── make-admin.ts                  set the admin claim (pilot design)
+│   └── screens.mjs                    regenerate the screenshots in docs/images
 ├── tests/
 │   ├── engine/                        engine tests, expected rupees worked by hand in comments
-│   ├── lib/, functions/               demo data, age gate, notice, feed, email
+│   ├── lib/                           browser store, feed, demo data, age rule
+│   ├── functions/                     alert email
 │   ├── rules/firestore.test.ts        29 security-rules tests in the emulator
-│   ├── e2e/                           live mode end to end
-│   └── demo/                          demo end to end (including offline) and the recording
+│   └── e2e/                           prototype, demo (with offline), and the video recording
 ├── docs/
 │   ├── prd.md                         full specification
 │   ├── research-summary.md            market research verdict and sources
-│   ├── demo-script.md                 2-minute talk track and honest answers
+│   ├── demo-script.md                 talk track and honest answers
 │   ├── build-log.md                   append-only: what failed, the cause, the fix
 │   └── images/                        screenshots used in this README
 └── logs/.gitkeep                      JSONL run logs land here (git-ignored)
@@ -186,8 +201,8 @@ Clutch_MVP/
 
 ### How the files connect
 
-Arrows mean "imports" or "reads". The dashed line is enforced by a lint rule:
-the engine imports nothing outside itself.
+Arrows mean "imports" or "reads". The engine imports nothing outside itself
+(enforced by a lint rule).
 
 ```mermaid
 flowchart LR
@@ -197,80 +212,80 @@ flowchart LR
     rewards --> impact
     progress --> checkup
     expiry --> checkup
+    due
   end
-  cat[("data/catalogue/catalogue.json")] --> catalogue["src/lib/catalogue.ts"]
+  cat[("data/catalogue")] --> catalogue["src/lib/catalogue.ts"]
   catalogue --> held["src/lib/held.ts"]
   held --> views["components/views"]
   engine --> views
-  demo["src/lib/demo.ts"] --> demopages["app/demo"]
-  views --> demopages
-  views --> screens["components/screens"]
-  screens --> fs[("Firestore")]
-  feed[("public change feed")] --> fn["functions/src"]
-  engine --> fn
-  fn --> fs
-  engine -. "never imports" .-x fs
+  store["src/lib/local-store.ts (browser)"] --> screens["components/screens"]
+  views --> screens
+  views --> demopages["app/demo"]
+  feedsrc[("public change log")] --> api["app/api/changes"]
+  feed["src/lib/feed.ts"] --> api
+  api --> console["Founder console"]
+  console --> store
+  engine --> store
+  engine --> fn["functions/src (pilot)"]
+  feed --> fn
 ```
 
 ## User flow
 
 ```mermaid
 flowchart TD
-    L["Landing: what Clutch does, for whom"] --> D["2-minute demo"]
-    D --> C["1 Checkup: rupees at risk, fix these first"]
-    C --> A["2 A change: real feed event, priced on this spend"]
-    A --> W["3 Fee waiver: rupees and days left"]
-    W --> P["4 Pay with: which of your cards, UPI on RuPay"]
-    P --> V["5 Verdict: keep, downgrade or close"]
-    L --> S["Live mode: Google sign-in"]
-    S --> G{"Born 18+ years ago?"}
-    G -- no --> X["Ask a parent; no profile created"]
-    G -- yes --> N["Notice and consent, per purpose"]
-    N --> K["Pick cards held, optional last four"]
-    K --> CU["Checkup, Pay with, alerts"]
+    L["Landing"] --> T["Try it with your cards"]
+    L --> D["Guided 2-minute demo (offline)"]
+    T --> G{"Born 18+ years ago?"}
+    G -- no --> X["Ask a parent; nothing stored"]
+    G -- yes --> C["My cards: pick, add details, typical month<br/>or Fill with an example"]
+    C --> K["Checkup: rupees at risk, with the working"]
+    C --> P["Pay with: best of your cards, UPI on RuPay"]
+    C --> V["Verdict: keep, downgrade or close"]
+    F["Founder console: live change log"] -->|approve| K
 ```
 
-**Explanation.** An investor lands on one plain line about the problem and
-goes into the guided demo, which walks the five screens in order with
-presenter notes. Live mode is the same views on real data: sign-in, an
-age gate that creates no profile for under-18s, consent recorded per
-purpose, then the cards a person holds.
+**Explanation.** A visitor answers one age question and goes straight to
+their cards; nothing needs an account. Every screen reads the same
+browser-held data and recomputes with the engine as it changes. The Founder
+console is the other side of the product: a real bank change is approved
+there and lands, priced, on the visitor's checkup.
 
 ## Low-level design (LLD)
 
-How one rule change reaches a user:
+How one rule change reaches a cardholder in the prototype:
 
 ```mermaid
 sequenceDiagram
-    participant F as Change feed
-    participant I as ingestChangeFeed (daily)
-    participant DB as Firestore
-    participant A as Founder (admin console)
-    participant P as approveAlert
+    participant F as CardAdvisor change log
+    participant R as /api/changes (server)
+    participant C as Founder console
+    participant S as local-store (browser)
     participant E as src/engine
-    participant M as Email
-    F->>I: new entries
-    I->>I: zod-validate, keep cards in the catalogue
-    I->>DB: write alert as pending (never sent from the feed)
-    A->>DB: read pending alerts
-    A->>P: approve, with the bank notice checked
-    P->>P: check admin claim on the server
-    P->>DB: users holding the card, with consent
-    P->>E: impactOfChange(card, change, user spend)
-    E-->>P: rupees per year, integer, rounded down
-    P->>DB: one alert per user (create-only marker, no duplicates)
-    P->>M: email only users who consented
+    participant U as Checkup (other tab)
+    C->>R: GET pending changes
+    R->>F: fetch (cached 1 hour; saved copy if offline)
+    R->>R: zod-validate, keep the 9 catalogue cards
+    R-->>C: pending changes, newest first
+    C->>C: Founder opens the bank notice, enters before and after, ticks "checked"
+    C->>S: approve(change)
+    S->>E: impactOfChange(card, change, visitor's typical month)
+    E-->>S: rupees per year (integer, rounded down) and explanation
+    S-->>U: storage event
+    U->>U: re-render: the change, its rupee effect, the bank's notice
 ```
 
-**Explanation.** The feed is a trigger, never a sender. The daily job
-validates each entry and stores it as pending. Only after the Founder
-approves it in the admin console does the server check the admin claim,
-find users who hold the card and consented, and price the change for each
-of them with the same engine the app uses. A create-only marker per user
-stops a retry from sending twice.
+**Explanation.** The feed is a trigger, never a sender. The server route
+reads the live public log, validates every entry and keeps only cards in
+the catalogue. Nothing reaches the visitor until the Founder approves it.
+Approval prices the change with the same engine the screens use, on the
+visitor's own spend, and a checkup open in another tab updates at once.
+Approving twice sends once. For the pilot, the same steps run in
+`functions/src` against Firestore, with the admin claim checked on the
+server and email to users who consented.
 
-Key engine functions: `bestCard()`, `waiverProgress()`,
-`milestoneProgress()`, `expiryReminders()`, `checkup()`, `verdict()`,
+Key engine functions: `checkup()`, `bestCard()`, `waiverProgress()`,
+`milestoneProgress()`, `expiryReminders()`, `dueDates()`, `verdict()`,
 `impactOfChange()`, `rewardRs()`, `formatRs()`.
 
 ## High-level design (HLD)
@@ -279,84 +294,86 @@ Key engine functions: `bestCard()`, `waiverProgress()`,
 flowchart LR
     subgraph Data
         CAT["Hand-checked catalogue<br/>9 cards, zod-validated"]
-        FEED["Public change feed"]
+        FEED["Public change log<br/>(live, cached)"]
     end
     subgraph Engine["Rules engine (src/engine)"]
         ENG["Pure TypeScript<br/>integer rupees, no I/O"]
     end
-    subgraph App["Next.js PWA"]
-        DEMO["Demo mode<br/>no Firebase, works offline"]
-        LIVE["Live mode<br/>sign-in, cards, alerts"]
-        ADMIN["Admin console<br/>Founder approval"]
+    subgraph App["Next.js app"]
+        PROTO["Prototype<br/>no sign-in, browser storage"]
+        DEMO["Guided demo<br/>offline"]
+        CONSOLE["Founder console"]
+        API["/api/changes"]
     end
-    subgraph Firebase["Firebase (emulators today)"]
-        AUTH["Auth: Google only"]
-        FS[("Firestore<br/>rules: own data only")]
-        FN["Functions: ingest, approve"]
+    subgraph Pilot["Pilot backend (built, not deployed)"]
+        AUTH["Firebase Auth: Google only"]
+        FS[("Firestore<br/>rules tested")]
+        FN["Functions: ingest, approve, email"]
     end
     LLM["Gemini (planned)<br/>words only, never money"]
     CAT --> ENG
+    ENG --> PROTO
     ENG --> DEMO
-    ENG --> LIVE
     ENG --> FN
+    FEED --> API --> CONSOLE --> PROTO
     FEED --> FN --> FS
-    LIVE --> AUTH
-    LIVE --> FS
-    ADMIN --> FN
+    AUTH --> FS
     LLM -. planned .-> FN
 ```
 
-**Explanation.** The catalogue and the engine are the core. Demo mode uses
-them with a made-up person and no backend at all. Live mode adds Google
-sign-in and Firestore, where security rules let users touch only their own
-data. Cloud Functions ingest the change feed and, after Founder approval,
-price and send alerts. The language model is off the money path.
+**Explanation.** The catalogue and the engine are the core, used by every
+surface. The prototype keeps each visitor's data in their browser and reads
+the live change log through one server route. The pilot backend (sign-in,
+Firestore with tested security rules, Cloud Functions for ingest, approval
+and email) is built and tested on emulators and comes in when real users
+sign up. The language model stays off the money path.
 
 ## How it would scale
 
-| Concern         | Today                                   | Next step                                                                                          |
-| --------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| Card coverage   | 9 cards verified by hand                | The other 21 most-held cards, same checklist; a second reviewer per card                           |
-| Change handling | Daily feed, Founder approves each alert | Same approval, with a diff view against the bank notice and a 72-hour target                       |
-| Users           | None; emulators only                    | 4-week pilot of 20 to 50 people (PRD Sec 12) on Firebase                                           |
-| Fan-out         | Per-user loop inside `approveAlert`     | Batched writes or a task queue once users number in thousands; the engine needs no change          |
-| Channels        | Email (emulator outbox)                 | Web push and reminders (parked step 7)                                                             |
-| Input           | Card names typed by the user            | Statement PDF parsed in the browser; the PDF and password never leave the device                   |
-| Language        | None                                    | Gemini to read free text and word alerts, with output rejected if it has a number not in its input |
+| Concern         | Today                                                                      | Next step                                                                                          |
+| --------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Card coverage   | 9 cards verified by hand                                                   | The other 21 most-held cards, same checklist; a second reviewer per card                           |
+| Change handling | Live feed, Founder approves each change                                    | Same approval, with a diff view against the bank notice and a 72-hour target                       |
+| Users           | None; prototype on a laptop, data in the browser                           | 4-week pilot of 20 to 50 people (PRD Sec 12) on the Firebase backend, with sign-in                 |
+| Fan-out         | One browser per approval in the prototype; per-user loop in `approveAlert` | Batched writes or a task queue once users number in thousands; the engine needs no change          |
+| Channels        | In-app reminders on the checkup; email built for the pilot                 | Web push                                                                                           |
+| Input           | Card names and numbers typed by the user                                   | Statement PDF parsed in the browser; the PDF and password never leave the device                   |
+| Language        | None                                                                       | Gemini to read free text and word alerts, with output rejected if it has a number not in its input |
 
 ## USP: what is different and why it is better
 
-| Feature        | Common approach                  | What Clutch does                                                                |
-| -------------- | -------------------------------- | ------------------------------------------------------------------------------- |
-| Unit of advice | Ratings and "best cards" lists   | Rupees, for the cards this person holds, on their spend                         |
-| Rule changes   | A news item or a generic alert   | Priced per person, approved by a human, linked to the bank's notice             |
-| Data access    | Bank login, SMS or email reading | Card names only; no card numbers, no bank credentials                           |
-| Money maths    | Often a model or a spreadsheet   | A pure, tested engine; integer rupees rounded down                              |
-| Card facts     | Scraped or from memory           | Each field checked against the bank's own document, unknowns left blank         |
-| Incentives     | Offers inside alerts             | Alerts never contain offers; any future referral is user-initiated and labelled |
+| Feature        | Common approach                  | What Clutch does                                                                   |
+| -------------- | -------------------------------- | ---------------------------------------------------------------------------------- |
+| Unit of advice | Ratings and "best cards" lists   | Rupees, for the cards this person holds, on their spend                            |
+| Trust          | A figure with no explanation     | The arithmetic behind every rupee, from the engine                                 |
+| Rule changes   | A news item or a generic alert   | Priced per person, approved by a human, linked to the bank's notice                |
+| Data access    | Bank login, SMS or email reading | Card names only; no card numbers, no bank credentials, no sign-in in the prototype |
+| Money maths    | Often a model or a spreadsheet   | A pure, tested engine; integer rupees rounded down                                 |
+| Card facts     | Scraped or from memory           | Each field checked against the bank's own document, unknowns left blank            |
+| Incentives     | Offers inside alerts             | Alerts never contain offers; any future referral is user-initiated and labelled    |
 
 ## Tools and software used
 
-| Tool                                                     | Used for                                          | Why                                                               |
-| -------------------------------------------------------- | ------------------------------------------------- | ----------------------------------------------------------------- |
-| **Next.js 16 (App Router), React 19, TypeScript strict** | App and demo                                      | Server Components by default; one codebase for live mode and demo |
-| **Tailwind 4, shadcn/ui on Base UI**                     | UI                                                | Accessible components with semantic colour tokens                 |
-| **zod 4**                                                | Every external input: catalogue, feed, user input | Bad data fails at the boundary, not in a rupee figure             |
-| **Firebase Auth, Firestore, Cloud Functions**            | Sign-in, user data, feed ingest and approval      | Google sign-in only; security rules tested in the emulator        |
-| **Vitest, @firebase/rules-unit-testing**                 | Unit, property and security-rules tests           | Fast, runs in CI                                                  |
-| **Playwright**                                           | End-to-end tests, offline demo test, demo video   | Checks the real built app at 375px and 1280px                     |
-| **ESLint (custom engine rules), Prettier**               | Code quality                                      | The engine purity rule is enforced, not a convention              |
-| **GitHub Actions**                                       | CI                                                | Every push is checked                                             |
-| **pnpm workspaces**                                      | App and functions packages                        | One lockfile; functions bundle the same engine                    |
+| Tool                                                     | Used for                                                           | Why                                                        |
+| -------------------------------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------- |
+| **Next.js 16 (App Router), React 19, TypeScript strict** | App, demo and the change-log route                                 | One codebase; Server Components by default                 |
+| **Tailwind 4, shadcn/ui on Base UI**                     | UI                                                                 | Accessible components with semantic colour tokens          |
+| **zod 4**                                                | Every external input: catalogue, feed, browser storage, user input | Bad data fails at the boundary, not in a rupee figure      |
+| **Firebase Auth, Firestore, Cloud Functions**            | Pilot backend: sign-in, user data, ingest, approval, email         | Google sign-in only; security rules tested in the emulator |
+| **Vitest, @firebase/rules-unit-testing**                 | Unit, property and security-rules tests                            | Fast, runs in CI                                           |
+| **Playwright**                                           | End-to-end tests, offline demo test, demo video, screenshots       | Checks the real built app at 375px and 1280px              |
+| **ESLint (custom engine rules), Prettier**               | Code quality                                                       | The engine purity rule is enforced, not a convention       |
+| **GitHub Actions**                                       | CI                                                                 | Every push is checked                                      |
+| **pnpm workspaces**                                      | App and functions packages                                         | One lockfile; functions bundle the same engine             |
 
 ## Principles used
 
 - **Deterministic money.** Every rupee figure is engine output. No model, no float.
+- **Show the working.** The arithmetic behind a figure is shown next to it.
 - **Never overstate.** Integer rupees, rounded down; unknown facts left blank, not guessed.
-- **Human in the loop for alerts.** A feed entry is a trigger only; nothing is sent until the Founder approves it.
-- **Least data.** No card numbers, CVV, bank logins, SMS or email access.
-- **Consent per purpose.** Recorded with a notice version; marketing is a separate switch, off by default.
-- **Under-18s get no profile,** enforced in the Firestore rules, not just the UI.
+- **Human in the loop for alerts.** A feed entry is a trigger only; nothing reaches a user until the Founder approves it.
+- **Least data.** No card numbers, CVV, bank logins, SMS or email access; in the prototype, nothing leaves the browser except the request for the public change log.
+- **Under-18s are turned away** before anything is stored.
 - **Plain words.** No promised savings, no "best card in India" (PRD Sec 2.1).
 - **Keep a build log.** Real failures and fixes are recorded in `docs/build-log.md` as they happen.
 
@@ -364,94 +381,97 @@ price and send alerts. The language model is off the money path.
 
 **Functional**
 
-| Requirement                                   | How it is implemented                                                      |
-| --------------------------------------------- | -------------------------------------------------------------------------- |
-| Show what is at risk, in rupees               | `src/engine/checkup.ts` over expiry and waiver progress                    |
-| Pick the best of your own cards for a payment | `src/engine/bestCard.ts`, including UPI on RuPay credit cards              |
-| Track fee waivers and milestones              | `src/engine/progress.ts` with pace against days left                       |
-| Price a bank's rule change for one person     | `src/engine/impact.ts`                                                     |
-| Keep, downgrade or close                      | `src/engine/verdict.ts`                                                    |
-| Alert on changes only after human approval    | `functions/src/index.ts` (`ingestChangeFeed`, `approveAlert`) and `/admin` |
-| Show it to investors without setup            | `/demo`, offline after one visit                                           |
+| Requirement                                       | How it is implemented                                                              |
+| ------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| Show what is at risk, in rupees, with the working | `src/engine/checkup.ts` over expiry, waiver and milestone progress                 |
+| Pick the best of your own cards for a payment     | `src/engine/bestCard.ts`, including UPI on RuPay credit cards                      |
+| Track fee waivers, milestones and lounge spend    | `src/engine/progress.ts` with pace against days left                               |
+| Remind about points expiry and due dates          | `src/engine/expiry.ts` (60, 30, 7 days), `src/engine/due.ts` (5, 2, 0 days)        |
+| Price a bank's rule change for one person         | `src/engine/impact.ts`                                                             |
+| Keep, downgrade or close                          | `src/engine/verdict.ts`                                                            |
+| Alert on changes only after human approval        | `/admin` and `src/lib/local-store.ts` (`approve`); pilot: `functions/src/index.ts` |
+| Export and delete your data                       | "Download my data" and "Clear my data" on My cards                                 |
+| Show it to investors without setup                | `/start` (own cards) and `/demo` (offline after one visit)                         |
 
 **Non-functional**
 
-| Quality              | Target                         | How it is checked                                                  |
-| -------------------- | ------------------------------ | ------------------------------------------------------------------ |
-| Correctness of money | Hand-worked figures            | Engine tests with the arithmetic in a comment above each assertion |
-| Purity of the engine | No I/O, clock or randomness    | ESLint rule in `eslint.config.mjs`, run in CI                      |
-| Privacy              | Only own data; no card numbers | 29 Firestore rules tests in the emulator                           |
-| Data validity        | No unchecked card fact         | zod on load, `pnpm catalogue:check` in CI                          |
-| Demo reliability     | Works with no network          | Playwright test that reloads the demo offline                      |
-| Mobile first         | 375px and 1280px               | Playwright screenshots, no horizontal scroll                       |
-| Secrets              | None in code                   | `.env*` git-ignored and unreadable to the coding agent             |
+| Quality              | Target                                        | How it is checked                                                                                  |
+| -------------------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Correctness of money | Hand-worked figures                           | Engine tests with the arithmetic in a comment above each assertion                                 |
+| Purity of the engine | No I/O, clock or randomness                   | ESLint rule in `eslint.config.mjs`, run in CI                                                      |
+| Untrusted input      | Bad data never reaches a figure               | zod on the catalogue, the feed and browser storage; tests for corrupt storage and card numbers     |
+| Privacy              | Least data                                    | No sign-in; only an "is an adult" flag, never a birth date; 29 Firestore rules tests for the pilot |
+| Live behaviour       | A change approved in one tab shows in another | Playwright two-tab test without a reload                                                           |
+| Demo reliability     | Works with no network                         | Playwright test that reloads the demo offline; the feed falls back to a saved copy                 |
+| Mobile first         | 375px and 1280px                              | Playwright screenshots, no horizontal scroll                                                       |
+| Secrets              | None in code                                  | `.env*` git-ignored and unreadable to the coding agent                                             |
 
 ## Results
 
 Latest full run (14 Nov 2026), all green:
 
-| Check                                                | Result             |
-| ---------------------------------------------------- | ------------------ |
-| Unit tests (engine, catalogue, functions, demo data) | 102 passed, 1 todo |
-| Firestore security-rules tests                       | 29 passed          |
-| Live-mode end to end (emulators)                     | 4 passed           |
-| Demo end to end, including offline                   | 2 passed           |
-| Typecheck, lint, catalogue check                     | clean              |
+| Check                                                                                                  | Result             |
+| ------------------------------------------------------------------------------------------------------ | ------------------ |
+| Unit tests (engine, browser store, feed, functions, demo data)                                         | 119 passed, 1 todo |
+| Firestore security-rules tests (pilot design)                                                          | 29 passed          |
+| End to end on the production build: age gate, own cards, two-tab approval, demo with offline, manifest | 5 passed           |
+| Typecheck, lint, catalogue check                                                                       | clean              |
 
-The demo's figures, worked by hand in `tests/lib/demo.test.ts`:
+The example person's figures, worked by hand in `tests/lib/demo.test.ts`:
 
-| Figure          | Value                                            | Where it comes from                                                 |
-| --------------- | ------------------------------------------------ | ------------------------------------------------------------------- |
-| Rupees at risk  | Rs 1,600                                         | Rs 600 of points + Rs 1,000 fee                                     |
-| Points expiring | Rs 600 in 28 days                                | 3,000 MoneyBack+ points × 20 paise                                  |
-| Fee waiver      | Rs 38,000 more in 100 days                       | Rs 1,00,000 target − Rs 62,000 spent, Rs 1,000 fee                  |
-| Earn-rate cut   | about −Rs 120 a year                             | 2 points per Rs 150 (0.267%) to per Rs 200 (0.2%) on everyday spend |
-| Verdicts        | Keep Rs 2,480 · Downgrade −Rs 40 · Keep Rs 1,921 | MoneyBack+, Millennia, Tata Neu Infinity                            |
+| Figure          | Value                                            | Working, as the app shows it                                                     |
+| --------------- | ------------------------------------------------ | -------------------------------------------------------------------------------- |
+| Rupees at risk  | Rs 1,600                                         | Rs 600 of points + Rs 1,000 fee                                                  |
+| Points expiring | Rs 600 in 28 days                                | 3,000 points × 20 paise = Rs 600                                                 |
+| Fee waiver      | Rs 38,000 more in 100 days                       | Rs 62,000 of Rs 1,00,000 with 265 of 365 days gone; the pace ends near Rs 85,396 |
+| Earn-rate cut   | about −Rs 120 a year                             | Rs 15,000 a month online, 0.267% to 0.2%                                         |
+| Verdicts        | Keep Rs 2,480 · Downgrade −Rs 40 · Keep Rs 1,921 | MoneyBack+, Millennia, Tata Neu Infinity                                         |
 
 ## What's real and what's made up
 
 - **Real:** the 9 catalogue cards and every rule on them (checked against
-  each bank's document, `data/catalogue/checklist.md`); the rule change in
-  step 2 (a real entry in the public change feed); the rules engine and
-  every rupee figure it produces; the security rules and the approval flow
-  (running on the Firebase emulators).
-- **Made up:** the demo person, their spend and their dates. Dates are set
-  relative to today so the demo never goes stale.
-- **Not yet:** real users, deployment, push and reminders, the language
+  each bank's document, `data/catalogue/checklist.md`); the change log in
+  the Founder console (fetched live from the public CardAdvisor log); the
+  rules engine and every rupee figure and working line it produces;
+  whatever a visitor enters about their own cards.
+- **Made up:** the example person ("Fill with an example" and the guided
+  demo), their spend and their dates. Dates are set relative to today so
+  they never go stale.
+- **Not yet:** real users, deployment, push notifications, the language
   model, referral partners. Revenue is Rs 0.
 
 ## Known gaps
 
 - **Coverage is 9 cards.** The other 21 most-held cards are not verified
   yet and are not shown.
-- **Not deployed.** Everything runs locally on the Firebase emulators;
-  production needs the Blaze plan and a Founder login.
-- **No push or reminders yet** (PRD Sec 13 step 7 is parked); email is
-  sent to the emulator outbox.
-- **No delete-account or export flow yet** (step 10).
-- **The verdict screen is demo only**: live mode has no monthly-spend form yet.
-- **The rule-change price covers the base earn rate**, labelled "on
-  everyday spend"; accelerated categories are not priced in the demo.
-- **Placeholder icon and system fonts;** brand assets are not final.
+- **Not deployed.** It runs on a laptop. The pilot backend needs the
+  Firebase Blaze plan and a Founder login.
+- **Data is per browser.** No account means no sync between devices; that
+  comes with sign-in in the pilot.
+- **Reminders are in-app only** (due dates, points expiry and waiver pace
+  on the checkup); no push or email in the prototype.
+- **Pricing a change needs the Founder's structured input** (fee or rate,
+  before and after), because the feed describes changes in words.
+- **A rule change is priced on the stated rate and category**; accelerated
+  merchant rates are not priced separately.
+- **Placeholder icon;** brand assets are not final.
 
 ## Docs, tests, and logs — where everything is
 
 - **Full specification** — scope, constraints, claims never made (Sec 2.1),
-  build order (Sec 13). See [docs/prd.md](docs/prd.md).
+  build order and status (Sec 13). See [docs/prd.md](docs/prd.md).
 - **Research** — market verdict, analogues and the pilot gates. See
   [docs/research-summary.md](docs/research-summary.md).
-- **Demo script** — 2-minute talk track, what each screen proves, honest
-  answers to likely questions. See [docs/demo-script.md](docs/demo-script.md).
+- **Demo script** — talk track, what each screen proves, honest answers to
+  likely questions. See [docs/demo-script.md](docs/demo-script.md).
 - **Build log** — append-only, dated: what failed, the cause, the fix. See
   [docs/build-log.md](docs/build-log.md).
 - **Catalogue provenance** — every card field with its source and page. See
   [data/catalogue/checklist.md](data/catalogue/checklist.md).
-- **Feed provenance** — what the change-feed sample is and where it came
-  from. See [data/fixtures/README.md](data/fixtures/README.md).
+- **Feed provenance** — the saved change-log copy and the test sample. See
+  `data/feed/snapshot.json` and [data/fixtures/README.md](data/fixtures/README.md).
 - **Constraints that governed the build** — hard rules on data, money and
   copy. See [CLAUDE.md](CLAUDE.md).
-- **Logs** — Cloud Functions write JSONL run logs to `logs/` with hashed
-  user ids only; they are git-ignored.
 
 ## Engineering quality and CI
 
@@ -462,46 +482,36 @@ flowchart LR
     P --> U["Unit tests"]
     P --> R["Security-rules tests<br/>Firestore emulator"]
     P --> C["Catalogue check"]
-    LOC["Local, before a demo"] --> E["e2e: live mode on emulators"]
-    LOC --> DM["e2e: demo, offline"]
+    LOC["Local, before a demo"] --> E["e2e on the production build:<br/>prototype, two tabs, demo offline"]
 ```
 
-End-to-end tests run locally (they need a browser and the emulators); CI
+End-to-end tests run locally (they build the app and drive a browser); CI
 runs everything else.
 
 ## Setup
 
-Needs Node 22 and pnpm. Live mode also needs Java 21 (for the Firebase emulators).
+Needs Node 22 and pnpm.
 
 ```bash
 pnpm install
+pnpm build && pnpm start      # open http://localhost:3000
 ```
 
-**Investor demo** (no Firebase; works offline after one visit):
+Then **Try it with your cards** (the working prototype) or **Guided 2-minute
+demo**. To see a change arrive live, open **Checkup** in one tab and
+**Founder console** in another, and approve a change on a card you hold.
 
 ```bash
-pnpm build && pnpm start      # open http://localhost:3000 and click "See the 2-minute demo"
-pnpm demo:record              # optional: saves a paced walkthrough to demo-recording/clutch-demo.webm
+pnpm demo:record                                 # paced walkthrough video: demo-recording/clutch-demo.webm
+node scripts/screens.mjs http://localhost:3300   # regenerate docs/images from a running build on port 3300
 ```
-
-**Live mode** (sign-in, your own cards, alerts) on local Firebase emulators:
-
-```bash
-pnpm emulators                # terminal 1: Auth, Firestore and Functions (project demo-clutch)
-pnpm dev                      # terminal 2: open http://localhost:3000/start
-```
-
-For the admin console at `/admin`, give your emulator user the claim
-`{"admin": true}` in the Emulator UI (http://127.0.0.1:4000, Authentication,
-edit user, custom claims).
 
 **Tests:**
 
 ```bash
 pnpm test          # unit tests
-pnpm test:rules    # Firestore security rules, in the emulator
-pnpm e2e           # live app end to end, on the emulators
-pnpm e2e:demo      # investor demo on a production build, including offline
+pnpm e2e           # end to end on a production build (prototype, demo, offline)
+pnpm test:rules    # Firestore security rules of the pilot design (needs Java 21 for the emulator)
 pnpm typecheck && pnpm lint
 ```
 
