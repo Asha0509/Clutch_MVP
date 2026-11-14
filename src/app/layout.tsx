@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
+import { SwRegister } from "@/components/sw-register";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -17,7 +18,15 @@ export const metadata: Metadata = {
   title: "Clutch",
   description:
     "What your credit cards cost you, in rupees, and which one to use.",
+  icons: {
+    icon: "/icons/favicon-64.png",
+    apple: "/icons/apple-touch-icon.png",
+  },
+  appleWebApp: { capable: true, title: "Clutch", statusBarStyle: "default" },
 };
+
+// Brand navy (CLAUDE.md brand tokens) for the browser and installed-app chrome.
+export const viewport: Viewport = { themeColor: "#14213D" };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
@@ -26,6 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <SwRegister />
         <header className="mx-auto w-full max-w-2xl px-4 py-4">
           <Link href="/" className="text-lg font-semibold tracking-tight">
             Clutch

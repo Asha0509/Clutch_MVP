@@ -14,7 +14,7 @@ test("first run: 3 cards in under 3 minutes, checkup matches the hand-worked fig
   await page.setViewportSize({ width: 375, height: 900 });
   await page.goto("/");
   await shoot(page, "landing");
-  await page.getByRole("link", { name: "Check my cards" }).click();
+  await page.getByRole("link", { name: "Live mode (needs local setup)" }).click();
   await shoot(page, "start");
 
   await signIn(page, `adult-${run}@example.com`);
