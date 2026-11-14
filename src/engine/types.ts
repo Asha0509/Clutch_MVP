@@ -69,7 +69,11 @@ export const Card = z
     forexMarkupPct: z.number().nonnegative().nullable(),
     rewards: z.array(RewardRule),
     milestones: z.array(Milestone),
-    pointsExpiryMonths: z.number().int().positive().nullable(),
+    // Months until points lapse, "never" if the issuer says they do not expire, null if unknown.
+    // Engine must treat null as unknown, never as no expiry.
+    pointsExpiryMonths: z
+      .union([z.number().int().positive(), z.literal("never")])
+      .nullable(),
     lounge: LoungeRule.nullable(),
     upiOnCredit: UpiRule.nullable(),
     verified: z.object({ on: z.iso.date(), sourceUrl: z.url() }),

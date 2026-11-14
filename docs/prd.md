@@ -206,7 +206,7 @@ type Card = {
   forexMarkupPct: number | null;
   rewards: RewardRule[];
   milestones: Milestone[];               // hand-curated
-  pointsExpiryMonths: number | null;     // hand-curated; null = no expiry
+  pointsExpiryMonths: number | "never" | null; // hand-curated; "never" = issuer says no expiry; null = unknown
   lounge: LoungeRule | null;             // hand-curated
   upiOnCredit: UpiRule | null;           // hand-curated (RuPay)
   verified: { on: string; sourceUrl: string };   // ISO date

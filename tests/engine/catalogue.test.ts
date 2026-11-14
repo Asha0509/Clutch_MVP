@@ -77,6 +77,18 @@ describe("Catalogue schema (Sec 7.1)", () => {
     expect(Catalogue.safeParse(wrap([bad])).success).toBe(false);
   });
 
+  it('accepts "never" and a month count for points expiry', () => {
+    for (const v of ["never", 24, null]) {
+      expect(Catalogue.safeParse(wrap([{ ...card, pointsExpiryMonths: v }])).success).toBe(true);
+    }
+  });
+
+  it("rejects other points expiry values", () => {
+    for (const v of ["forever", 0, 1.5]) {
+      expect(Catalogue.safeParse(wrap([{ ...card, pointsExpiryMonths: v }])).success).toBe(false);
+    }
+  });
+
   it("rejects duplicate card ids", () => {
     expect(Catalogue.safeParse(wrap([card, card])).success).toBe(false);
   });
