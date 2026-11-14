@@ -92,14 +92,13 @@ function Review({
   return (
     <article
       data-testid={`alert-${alert.id}`}
-      className="space-y-4 rounded-lg border bg-card p-4"
+      className="space-y-4 border-t p-4"
     >
       <div className="space-y-1">
         <p className="text-sm text-muted-foreground">
           {cardName(alert.cardId)} · feed date {alert.feedDate} · feed source:{" "}
           {alert.feedTier ?? "not stated"}
         </p>
-        <h2 className="font-medium">{alert.title}</h2>
         <p className="text-sm">Before: {alert.before ?? "not stated"}</p>
         <p className="text-sm">After: {alert.after ?? "not stated"}</p>
         {alert.feedUrl && (
@@ -299,17 +298,28 @@ function Console({ s }: { s: LocalState }) {
       {failed && (
         <p className="text-destructive">The change feed did not load.</p>
       )}
-      {waiting.map((a) => (
-        <div key={a.id} className="space-y-1">
-          {heldIds.has(a.cardId) && (
-            <Badge variant="secondary">On a card this visitor holds</Badge>
-          )}
-          <Review
-            alert={a}
-            onDone={(m) => setMessages((ms) => [...ms, m])}
-          />
-        </div>
-      ))}
+      <div className="space-y-2">
+        {waiting.map((a) => (
+          <details
+            key={a.id}
+            className="rounded-xl border bg-card shadow-sm"
+          >
+            <summary className="flex cursor-pointer flex-wrap items-center gap-x-3 gap-y-1 p-3">
+              <span className="text-xs text-muted-foreground">
+                {a.feedDate} · {cardName(a.cardId)}
+              </span>
+              {heldIds.has(a.cardId) && (
+                <Badge variant="secondary">Held by this visitor</Badge>
+              )}
+              <span className="w-full font-medium">{a.title}</span>
+            </summary>
+            <Review
+              alert={a}
+              onDone={(m) => setMessages((ms) => [...ms, m])}
+            />
+          </details>
+        ))}
+      </div>
     </section>
   );
 }

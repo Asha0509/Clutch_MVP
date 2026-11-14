@@ -116,6 +116,18 @@ function fromDraft(cardId: string, d: Draft, keep: UserCard) {
   });
 }
 
+// PRD Sec 13 step 10: export as JSON. Everything Clutch holds about the visitor is this one object.
+function download(s: LocalState) {
+  const url = URL.createObjectURL(
+    new Blob([JSON.stringify(s, null, 2)], { type: "application/json" }),
+  );
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "clutch-my-data.json";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 export function CardsScreen() {
   return <Gate>{(s) => <Cards s={s} />}</Gate>;
 }
@@ -153,9 +165,14 @@ function Cards({ s }: { s: LocalState }) {
             Fill with an example
           </Button>
           {held.length > 0 && (
-            <Button variant="ghost" size="sm" onClick={clearAll}>
-              Clear my data
-            </Button>
+            <>
+              <Button variant="ghost" size="sm" onClick={() => download(s)}>
+                Download my data
+              </Button>
+              <Button variant="ghost" size="sm" onClick={clearAll}>
+                Clear my data
+              </Button>
+            </>
           )}
         </div>
       </div>
@@ -165,7 +182,7 @@ function Cards({ s }: { s: LocalState }) {
           {held.map((h) => (
             <li
               key={h.cardId}
-              className="flex flex-wrap items-center justify-between gap-2 rounded-lg border bg-card p-3"
+              className="flex flex-wrap items-center justify-between gap-2 rounded-xl border bg-card p-3 shadow-sm"
             >
               <span className="font-medium">
                 {cardName(h.cardId)}
@@ -231,7 +248,7 @@ function Cards({ s }: { s: LocalState }) {
             <li key={c.id}>
               <button
                 type="button"
-                className="flex w-full items-center justify-between gap-3 rounded-lg border bg-card p-3 text-left hover:bg-muted"
+                className="flex w-full items-center justify-between gap-3 rounded-xl border bg-card p-3 shadow-sm text-left hover:bg-muted"
                 onClick={() =>
                   update((st) => ({
                     ...st,

@@ -36,15 +36,25 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <SwRegister />
-        <header className="mx-auto w-full max-w-2xl px-4 py-4">
-          <Link href="/" className="text-lg font-semibold tracking-tight">
-            Clutch
-          </Link>
+        <header className="bg-primary text-primary-foreground">
+          <div className="mx-auto flex w-full max-w-3xl items-center justify-between gap-3 px-4 py-3">
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-lg font-semibold tracking-tight"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element -- tiny static SVG mark */}
+              <img src="/icons/icon.svg" alt="" className="size-7" />
+              Clutch
+            </Link>
+            <span className="hidden text-sm opacity-80 sm:inline">
+              An honest friend for your credit cards
+            </span>
+          </div>
         </header>
-        <main className="mx-auto w-full max-w-2xl flex-1 px-4 pb-10">
+        <main className="mx-auto w-full max-w-3xl flex-1 px-4 pb-10">
           {children}
         </main>
-        <footer className="mx-auto w-full max-w-2xl space-y-1 px-4 py-6 text-xs text-muted-foreground">
+        <footer className="mx-auto w-full max-w-3xl space-y-1 px-4 py-6 text-xs text-muted-foreground">
           <p>
             Clutch gives information, not financial advice. Check the
             bank&apos;s own terms.

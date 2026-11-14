@@ -186,6 +186,7 @@ export type RiskItem = {
   kind: "points-expiry" | "fee" | "milestone";
   rupees: number;
   text: string;
+  working: string; // the arithmetic behind `rupees`, shown under the at-risk figure
 };
 
 export type Verdict = {

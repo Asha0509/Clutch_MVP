@@ -46,7 +46,7 @@ export function VerdictView({
           <article
             key={h.cardId}
             data-testid={`verdict-${h.cardId}`}
-            className="space-y-3 rounded-lg border bg-card p-4"
+            className="space-y-3 rounded-xl border bg-card p-4 shadow-sm"
           >
             <div className="flex flex-wrap items-center justify-between gap-2">
               <h3 className="font-medium">{h.card.name}</h3>

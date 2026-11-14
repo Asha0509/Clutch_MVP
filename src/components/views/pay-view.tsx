@@ -29,7 +29,7 @@ function Result({
   return (
     <article
       data-testid={testId}
-      className="space-y-2 rounded-lg border bg-card p-4"
+      className="space-y-2 rounded-xl border bg-card p-4 shadow-sm"
     >
       <h3 className="font-medium">{r.name}</h3>
       <p className="text-2xl font-semibold">{formatRs(r.rewardRs)} back</p>
@@ -215,7 +215,7 @@ export function PayView({
               )}
             </>
           ) : (
-            <p className="rounded-lg border bg-card p-4">
+            <p className="rounded-xl border bg-card p-4 shadow-sm">
               {usable.length > 0
                 ? "None of your cards earn rewards on this."
                 : "None of your cards can be used for this payment."}

@@ -9,9 +9,9 @@
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-geist-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -66,7 +66,7 @@
   --accent: oklch(0.776 0.148 69.4); /* brand amber */
   --accent-foreground: oklch(0.252 0.056 264);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
+  --border: oklch(0.9 0.012 91.5); /* warm, reads on cream */
   --input: oklch(0.8 0.015 264); /* visible on cream */
   --ring: oklch(0.742 0.121 185.4); /* brand teal */
   --chart-1: oklch(0.742 0.121 185.4);

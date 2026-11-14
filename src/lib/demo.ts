@@ -69,7 +69,11 @@ export function demoUser(today: Date): DemoUser {
     },
   };
 
-  const mbPlus = held[0];
+  const impact = impactOfChange(
+    held[0],
+    DEMO_CHANGE,
+    profiles["hdfc-moneyback-plus"],
+  );
   const alerts: UserAlert[] = [
     {
       alertId: "demo-hdfc-moneyback-plus-earn-rate",
@@ -79,11 +83,8 @@ export function demoUser(today: Date): DemoUser {
       after: "20 CashPoints per ₹200 (10X); 2 per ₹200 (base)",
       issuerUrl:
         "https://www.hdfc.bank.in/content/dam/hdfcbankpws/in/en/personal-banking/discover-products/cards/credit-cards/moneyback-plus-credit-card/pdf/MBPlus-TnCs.pdf",
-      rupeesPerYear: impactOfChange(
-        mbPlus,
-        DEMO_CHANGE,
-        profiles["hdfc-moneyback-plus"],
-      ).rupeesPerYear,
+      rupeesPerYear: impact.rupeesPerYear,
+      explanation: impact.explanation,
     },
   ];
 

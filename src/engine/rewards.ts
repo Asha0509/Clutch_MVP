@@ -77,13 +77,16 @@ export const monthlyCap = (rule: RewardRule): number | null =>
       : rule.monthlyCapRs;
 
 // Lowest stated rupee value of the card's points (Founder decision 1), for valuing a balance.
-export function pointsValueRs(card: Card, points: number): number | null {
+export function lowestPointPaisa(card: Card): number | null {
   const values = card.rewards
     .map((r) => r.pointValuePaisa)
     .filter((v): v is number => v !== null);
-  return values.length === 0
-    ? null
-    : Math.floor((points * Math.min(...values)) / 100);
+  return values.length === 0 ? null : Math.min(...values);
+}
+
+export function pointsValueRs(card: Card, points: number): number | null {
+  const paisa = lowestPointPaisa(card);
+  return paisa === null ? null : Math.floor((points * paisa) / 100);
 }
 
 // Monthly spend that earns on this card. Excluded spend is left out of waiver and milestone estimates so they

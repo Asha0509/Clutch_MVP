@@ -16,6 +16,7 @@ export const UserAlert = z.object({
   after: z.string().nullable(),
   issuerUrl: z.string(),
   rupeesPerYear: z.number().int().nullable(),
+  explanation: z.string().optional(),
 });
 export type UserAlert = z.infer<typeof UserAlert>;
 
@@ -67,7 +68,7 @@ export function approve(
   const held = toHeld(s.cards).find((h) => h.cardId === p.cardId);
   if (!held || s.alerts.some((a) => a.alertId === p.id))
     return { ...s, decided };
-  const { rupeesPerYear } = impactOfChange(
+  const { rupeesPerYear, explanation } = impactOfChange(
     held,
     input.change,
     s.profiles[p.cardId] ?? {},
@@ -80,6 +81,7 @@ export function approve(
     after: p.after,
     issuerUrl: input.issuerUrl,
     rupeesPerYear,
+    explanation,
   };
   return { ...s, decided, alerts: [...s.alerts, alert] };
 }

@@ -84,8 +84,13 @@ test("Founder approves a real feed change; the open checkup updates without a re
   await expect(user.getByText("Changes to your cards")).toHaveCount(0);
 
   await page.goto("/admin");
+  await page
+    .locator("summary", {
+      hasText: "Earn rate cut ~25%: per ₹150 raised to per ₹200",
+    })
+    .click();
   const change = page
-    .locator("article")
+    .locator("details")
     .filter({ hasText: "Earn rate cut ~25%: per ₹150 raised to per ₹200" });
   await expect(change).toBeVisible();
   // Priced from the feed's words: 2 points per Rs 150 at 20 paise = 0.267%; per Rs 200 = 0.2%.

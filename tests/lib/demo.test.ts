@@ -92,3 +92,24 @@ for (const iso of ["2026-11-14", "2027-03-01", "2028-02-20"]) {
     });
   });
 }
+
+describe("the working shown under the at-risk figure (14 Nov 2026)", () => {
+  const today = new Date("2026-11-14T00:00:00Z");
+  const items = checkup(demoUser(today).held, today).items;
+  const working = (kind: string) => items.find((i) => i.kind === kind)?.working;
+
+  it("shows the points arithmetic", () => {
+    // 3,000 x 20 paise = Rs 600.
+    expect(working("points-expiry")).toBe(
+      "3,000 points × 20 paise = Rs 600, expiring in 28 days.",
+    );
+  });
+
+  it("shows the waiver pace arithmetic", () => {
+    // Card year 22 Feb 2026 to 22 Feb 2027: 365 days, 265 gone, 100 left.
+    // 62,000 x 365 / 265 = 85,396.2, floored to Rs 85,396: short of Rs 1,00,000.
+    expect(working("fee")).toBe(
+      "Rs 62,000 of Rs 1,00,000 spent with 265 of 365 days of the card year gone. At that pace the year ends near Rs 85,396, short of Rs 1,00,000, so the Rs 1,000 fee is counted.",
+    );
+  });
+});
