@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-13",
+  "version": "2026-11-14",
   "source": "cardadvisor.in CC BY 4.0 v2026-09-17, verified against issuer documents",
   "cards": [
     {
@@ -438,6 +438,172 @@
       "verified": {
         "on": "2026-11-13",
         "sourceUrl": "https://www.icicibank.com/personal-banking/cards/credit-card/amazon-pay-credit-card"
+      }
+    },
+    {
+      "id": "axis-ace",
+      "issuer": "AXIS",
+      "name": "Axis Bank ACE Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 499,
+      "annualFeeRs": 499,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 200000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "utilities",
+          "ratePct": 5,
+          "monthlyCapRs": 500,
+          "capPeriod": "month",
+          "capBasis": "reward",
+          "exclusions": [],
+          "merchants": ["Google Pay"],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "telecom",
+          "ratePct": 5,
+          "monthlyCapRs": 500,
+          "capPeriod": "month",
+          "capBasis": "reward",
+          "exclusions": [],
+          "merchants": ["Google Pay"],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "dining",
+          "ratePct": 4,
+          "monthlyCapRs": 500,
+          "capPeriod": "month",
+          "capBasis": "reward",
+          "exclusions": [],
+          "merchants": ["Swiggy", "Zomato"],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "other",
+          "ratePct": 4,
+          "monthlyCapRs": 500,
+          "capPeriod": "month",
+          "capBasis": "reward",
+          "exclusions": [],
+          "merchants": ["Ola"],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "other",
+          "ratePct": 1.5,
+          "monthlyCapRs": null,
+          "capPeriod": "month",
+          "capBasis": null,
+          "exclusions": [
+            "fuel",
+            "wallet-load",
+            "rent",
+            "insurance",
+            "education",
+            "government",
+            "utilities",
+            "telecom"
+          ],
+          "merchants": [],
+          "pointValuePaisa": 100
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": {
+        "domesticPerQuarter": null,
+        "domesticPerYear": 4,
+        "internationalPerYear": null,
+        "spendGateRs": 50000,
+        "gatePeriod": "3-months"
+      },
+      "upiOnCredit": null,
+      "verified": {
+        "on": "2026-11-14",
+        "sourceUrl": "https://www.axis.bank.in/cards/credit-card/axis-bank-ace-credit-card"
+      }
+    },
+    {
+      "id": "axis-flipkart",
+      "issuer": "AXIS",
+      "name": "Flipkart Axis Bank Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 500,
+      "annualFeeRs": 500,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 350000,
+      "forexMarkupPct": 3.5,
+      "rewards": [
+        {
+          "category": "online-shopping",
+          "ratePct": 7.5,
+          "monthlyCapRs": 4000,
+          "capPeriod": "quarter",
+          "capBasis": "reward",
+          "exclusions": [],
+          "merchants": ["Myntra"],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "online-shopping",
+          "ratePct": 5,
+          "monthlyCapRs": 4000,
+          "capPeriod": "quarter",
+          "capBasis": "reward",
+          "exclusions": [],
+          "merchants": ["Flipkart"],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "travel-flights",
+          "ratePct": 5,
+          "monthlyCapRs": 4000,
+          "capPeriod": "quarter",
+          "capBasis": "reward",
+          "exclusions": [],
+          "merchants": ["Cleartrip"],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "dining",
+          "ratePct": 4,
+          "monthlyCapRs": null,
+          "capPeriod": "month",
+          "capBasis": null,
+          "exclusions": [],
+          "merchants": ["Swiggy (food delivery only)"],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "other",
+          "ratePct": 1,
+          "monthlyCapRs": null,
+          "capPeriod": "month",
+          "capBasis": null,
+          "exclusions": [
+            "utilities",
+            "telecom",
+            "fuel",
+            "insurance",
+            "rent",
+            "wallet-load",
+            "education",
+            "government"
+          ],
+          "merchants": [],
+          "pointValuePaisa": 100
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "verified": {
+        "on": "2026-11-14",
+        "sourceUrl": "https://www.axis.bank.in/cards/credit-card/flipkart-axisbank-credit-card"
       }
     }
   ]

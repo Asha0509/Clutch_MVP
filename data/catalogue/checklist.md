@@ -93,3 +93,31 @@ ICICI documents: MITC `icicibank.com/managed-assets/docs/personal/cards/mitc_cc.
 ### icici-coral (not shipped)
 
 Blocked. The card page gives 2 points per Rs 100 on retail and 1 on utility and insurance, fee Rs 500 waived at Rs 1.5 lakh, 3.5% forex, lounge 1 domestic a quarter on Rs 75,000 the previous quarter, and a milestone of 2,000 points at Rs 2 lakh. MITC says points expire in 36 months. No ICICI document gives the value of a point, and the per-category cap table in the MITC is unreadable. Stays in `draft.json`.
+
+## Axis Bank, checked 2026-11-14
+
+Axis documents are on axis.bank.in under `/docs/default-source/default-document-library/`. Both card pages say terms were updated from 28 Aug 2026; the linked T&C PDFs carry the same terms as the 2024 and June 2025 revisions read below.
+
+### axis-ace
+
+| Field                  | Value                                                                                                                                                                    | Where read                                                                     |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| Fee, waiver            | Rs 499 joining (waived on Rs 10,000 spend in 45 days) and Rs 499 annual from year 2, waived above Rs 2,00,000 a year                                                     | Card page "Fees & Charges"                                                     |
+| Forex                  | 3.5%                                                                                                                                                                     | Card page "Foreign currency transaction fee"                                   |
+| Rates, cap             | 5% on utility bills and DTH or mobile recharges through Google Pay, 4% on Swiggy, Zomato and Ola, together capped at Rs 500 a statement; 1.5% on other spends, unlimited | `axis-bank-ace-credit-card-tncs.pdf` p1-2                                      |
+| Exclusions (1.5% rate) | Utilities and telecom off Google Pay, fuel, EMI, wallet load, cash advance, rent, gold and jewellery, insurance, education, government                                   | T&C p1, p3; `terms-and-conditions-axis-bank-ace-credit-card.pdf` (20 Jun 2025) |
+| Lounge                 | 4 domestic visits a calendar year; needs Rs 50,000 spent in the previous 3 calendar months                                                                               | `axis-bank-airport-lounge-access-program.pdf` p1 and section 2; card page      |
+| Expiry                 | None stated for cashback (null)                                                                                                                                          | T&C p2                                                                         |
+| Uncertain              | The Rs 500 cap is shared by the 5% and 4% rows, so it is recorded on each. Ola is a ride service recorded under "other". The 1.5% needs eligible personal spend only.    |                                                                                |
+
+### axis-flipkart
+
+| Field                | Value                                                                                                                                                            | Where read                                                                                              |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Fee, waiver          | Rs 500 joining and annual from year 2, waived above Rs 3,50,000 a year (rent and wallet load do not count)                                                       | Card page "Fees & Charges"                                                                              |
+| Forex                | 3.5%                                                                                                                                                             | Card page                                                                                               |
+| Rates, caps          | Myntra 7.5%, Flipkart 5% (not Flipkart Health), Cleartrip 5%, each capped at Rs 4,000 per statement quarter; 1% elsewhere, unlimited                             | `cashback-tncs---final.pdf` p1; `terms-and-conditions-flipkart-axis-bank-credit-card.pdf` (20 Jun 2025) |
+| Swiggy               | 4% on Swiggy food delivery only (not Instamart or Genie)                                                                                                         | T&C p2                                                                                                  |
+| Exclusions (1% rate) | Utility, telecom, fuel, insurance, rent, wallet load, education, government, plus gift cards, gold, EMI                                                          | T&C p1                                                                                                  |
+| Lounge               | None since 20 Jun 2025                                                                                                                                           | Lounge program notice                                                                                   |
+| Uncertain            | The 4% "Preferred Merchants" list is an image, so only Swiggy is recorded; others may exist. Caps are per statement quarter, recorded with `capPeriod: quarter`. |                                                                                                         |
