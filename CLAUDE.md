@@ -50,7 +50,7 @@ Founder: Asha Jyothi Boddu. Refer to her in venture materials as "Founder" only.
 - UI is shadcn/ui. Add components with `pnpm dlx shadcn@latest add <name>`; never hand-write one that exists in the registry. Semantic colour tokens only, no raw hex outside `tailwind` config. Brand tokens: navy #14213D, cream #F6F4EE, amber #F2A33A, teal #2EC4B6.
 - Mobile first. After any UI change, check the page at 375px and 1280px with Playwright before saying it is done.
 - Plain, human copy. No exclamation marks, no "unlock", no "supercharge". Say "Rs 8,000 more by 31 Dec", not "boost your savings".
-- Small commits, one line, lower-case imperative, no Co-Authored-By lines unless the user's session instructions say otherwise. Commits use the developer's own git identity from `git config`; never change it.
+- Small commits. Subject line: a plain sentence saying what changed. Body: a few short paragraphs in plain English on what changed, where any facts came from, and what is still missing. No Co-Authored-By lines unless the user's session instructions say otherwise. Commits use the developer's own git identity from `git config`; never change it.
 - Type hints everywhere. No dead code, no commented-out blocks, no unused exports. No new dependency without asking.
 - Tests first for engine changes. Hand-work the expected number in a comment above the assertion.
 - Cite PRD sections in comments as `// Sec 8.3` (ASCII).
