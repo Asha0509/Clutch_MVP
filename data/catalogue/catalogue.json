@@ -72,35 +72,35 @@
       "rewards": [
         {
           "category": "other",
-          "ratePct": 1.25,
+          "ratePct": 0.375,
           "monthlyCapRs": null,
           "capBasis": null,
           "exclusions": ["fuel", "wallet-load", "rent", "government"],
           "merchants": [],
-          "pointValuePaisa": 50
+          "pointValuePaisa": 15
         },
         {
           "category": "groceries",
-          "ratePct": 1.25,
-          "monthlyCapRs": 1000,
+          "ratePct": 0.375,
+          "monthlyCapRs": 300,
           "capBasis": "reward",
           "exclusions": ["fuel", "wallet-load", "rent", "government"],
           "merchants": [],
-          "pointValuePaisa": 50
+          "pointValuePaisa": 15
         },
         {
           "category": "insurance",
-          "ratePct": 1.25,
-          "monthlyCapRs": 1000,
+          "ratePct": 0.375,
+          "monthlyCapRs": 300,
           "capBasis": "reward",
           "exclusions": ["fuel", "wallet-load", "rent", "government"],
           "merchants": [],
-          "pointValuePaisa": 50
+          "pointValuePaisa": 15
         },
         {
           "category": "online-shopping",
-          "ratePct": 6.25,
-          "monthlyCapRs": 2500,
+          "ratePct": 1.875,
+          "monthlyCapRs": 750,
           "capBasis": "reward",
           "exclusions": ["fuel", "wallet-load", "rent", "government"],
           "merchants": [
@@ -109,7 +109,7 @@
             "Reliance Digital",
             "Marks & Spencer"
           ],
-          "pointValuePaisa": 50
+          "pointValuePaisa": 15
         }
       ],
       "milestones": [
@@ -384,7 +384,7 @@
         }
       ],
       "milestones": [],
-      "pointsExpiryMonths": null,
+      "pointsExpiryMonths": "never",
       "lounge": null,
       "upiOnCredit": null,
       "verified": {
@@ -432,7 +432,7 @@
         }
       ],
       "milestones": [],
-      "pointsExpiryMonths": null,
+      "pointsExpiryMonths": "never",
       "lounge": null,
       "upiOnCredit": null,
       "verified": {
