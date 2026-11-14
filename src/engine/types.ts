@@ -113,7 +113,7 @@ export const UserCard = z.object({
     .regex(/^\d{4}$/)
     .optional(),
   openedOn: IsoDate.optional(),
-  anniversaryMonth: z.number().int().min(1).max(12),
+  anniversaryMonth: z.number().int().min(1).max(12).optional(), // fee month; unlocks waiver tracking
   feePaidOn: IsoDate.optional(),
   ytdSpendRs: Rs.optional(), // spend since the last card anniversary
   quarterSpendRs: Rs.optional(), // spend in the current calendar quarter
@@ -168,7 +168,7 @@ export type MilestoneStatus = {
   targetRs: number;
   spentRs: number | null;
   remainingRs: number | null;
-  daysLeft: number;
+  daysLeft: number | null;
   status: "done" | "on-track" | "behind" | "unknown";
 };
 

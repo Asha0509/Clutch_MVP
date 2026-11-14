@@ -38,6 +38,7 @@ export function checkup(
     for (const m of milestoneProgress(h, today)) {
       if (
         m.status === "behind" &&
+        m.daysLeft !== null &&
         m.daysLeft < MILESTONE_WINDOW_DAYS &&
         m.benefitValueRs
       )

@@ -18,6 +18,9 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
+const without = (o: Record<string, unknown>, key: string) =>
+  Object.fromEntries(Object.entries(o).filter(([k]) => k !== key));
+
 // PRD Sec 6.4, Sec 11.2, Sec 13 step 2. Runs inside the emulator via `pnpm test:rules`.
 let env: RulesTestEnvironment;
 
@@ -150,7 +153,7 @@ describe("profile and the under-18 gate (Sec 6.1)", () => {
     );
   });
   it("denies a profile without a birth month, an unknown field, or someone else's email", async () => {
-    const { dobMonth: _omit, ...noMonth } = profile(A);
+    const noMonth = without(profile(A), "dobMonth");
     await assertFails(setDoc(doc(as(A), "users/alice"), noMonth));
     await assertFails(
       setDoc(doc(as(A), "users/alice"), profile(A, { phone: "9999999999" })),
@@ -169,6 +172,19 @@ describe("profile and the under-18 gate (Sec 6.1)", () => {
   });
   it("lets the owner delete their profile (Sec 11.4)", async () => {
     await assertSucceeds(deleteDoc(doc(as(B), "users/bob")));
+  });
+});
+
+describe("nothing is stored before an adult profile exists (Sec 6.1, Sec 11.3)", () => {
+  it("denies cards and events for a signed-in user with no profile", async () => {
+    await assertFails(setDoc(doc(as(A), "users/alice/cards/c1"), userCard()));
+    await assertFails(
+      addDoc(collection(as(A), "users/alice/events"), {
+        type: "open",
+        at: serverTimestamp(),
+        meta: {},
+      }),
+    );
   });
 });
 
@@ -197,9 +213,10 @@ describe("held cards store no sensitive card data (Sec 2.1)", () => {
     await assertFails(put(userCard({ cvv: "123" })));
     await assertFails(put(userCard({ notes: "anything" })));
   });
-  it("rejects a card without a product or anniversary month", async () => {
+  it("needs the product; the fee month is optional but must be 1 to 12", async () => {
     await assertFails(put({ anniversaryMonth: 3 }));
-    await assertFails(put({ cardId: "hdfc-millennia" }));
+    await assertSucceeds(put({ cardId: "hdfc-millennia" }));
+    await assertFails(put(userCard({ anniversaryMonth: 13 })));
   });
 });
 
@@ -248,7 +265,7 @@ describe("consent log is append-only (Sec 6.4, Sec 11.2)", () => {
   });
   it("rejects a bad purpose, a missing field, an extra field or a back-dated time", async () => {
     await assertFails(addDoc(log(), consent({ purpose: "sell_data" })));
-    const { userAgentHash: _omit, ...missing } = consent();
+    const missing = without(consent(), "userAgentHash");
     await assertFails(addDoc(log(), missing));
     await assertFails(addDoc(log(), consent({ email: "bob@example.com" })));
     await assertFails(addDoc(log(), consent({ at: Timestamp.fromMillis(0) })));

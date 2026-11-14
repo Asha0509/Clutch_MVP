@@ -35,6 +35,18 @@ describe("waiverProgress", () => {
     });
   });
 
+  it("is not tracked until the user gives the fee month", () => {
+    expect(
+      waiverProgress(
+        held("hdfc-millennia", {
+          anniversaryMonth: undefined,
+          ytdSpendRs: 50000,
+        }),
+        TODAY,
+      ),
+    ).toBeNull();
+  });
+
   it("does not apply to a lifetime-free card", () => {
     expect(waiverProgress(users.lifetimeFree[0], TODAY)).toBeNull();
   });
@@ -66,6 +78,14 @@ describe("milestoneProgress", () => {
       daysLeft: 116,
       status: "behind",
     });
+  });
+
+  it("says unknown for a card-year milestone when the fee month is missing", () => {
+    const [, year] = milestoneProgress(
+      { ...regalia, anniversaryMonth: undefined },
+      TODAY,
+    );
+    expect(year).toMatchObject({ status: "unknown", daysLeft: null });
   });
 
   it("marks a reached milestone as done", () => {

@@ -21,7 +21,13 @@ export function waiverProgress(
   today: Date,
 ): WaiverProgress | null {
   const targetRs = card.card.feeWaiverSpendRs;
-  if (card.card.lifetimeFree || targetRs === null) return null;
+  // No fee month means we cannot place the card year, so the waiver is not tracked yet.
+  if (
+    card.card.lifetimeFree ||
+    targetRs === null ||
+    card.anniversaryMonth === undefined
+  )
+    return null;
   const year = cardYear(card.anniversaryMonth, card.openedOn, today);
   const spentRs = card.ytdSpendRs ?? null;
   return {
@@ -50,10 +56,12 @@ const periodBounds = (
   card: HeldCard,
   period: Milestone["period"],
   today: Date,
-): Bounds =>
-  period === "anniversary-year"
-    ? cardYear(card.anniversaryMonth, card.openedOn, today)
-    : calendarPeriod(period, today);
+): Bounds | null =>
+  period !== "anniversary-year"
+    ? calendarPeriod(period, today)
+    : card.anniversaryMonth === undefined
+      ? null
+      : cardYear(card.anniversaryMonth, card.openedOn, today);
 
 export function milestoneProgress(
   card: HeldCard,
@@ -61,9 +69,9 @@ export function milestoneProgress(
 ): MilestoneStatus[] {
   return card.card.milestones.map((m) => {
     const bounds = periodBounds(card, m.period, today);
-    const spentRs = periodSpendRs(card, m.period);
+    const spentRs = bounds === null ? null : periodSpendRs(card, m.period);
     const status: MilestoneStatus["status"] =
-      spentRs === null
+      spentRs === null || bounds === null
         ? "unknown"
         : spentRs >= m.spendRs
           ? "done"
@@ -77,7 +85,7 @@ export function milestoneProgress(
       targetRs: m.spendRs,
       spentRs,
       remainingRs: spentRs === null ? null : Math.max(0, m.spendRs - spentRs),
-      daysLeft: daysBetween(today, bounds.end),
+      daysLeft: bounds === null ? null : daysBetween(today, bounds.end),
       status,
     };
   });

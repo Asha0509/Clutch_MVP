@@ -5,6 +5,8 @@ service cloud.firestore {
     function signedIn() { return request.auth != null; }
     function isOwner(uid) { return signedIn() && request.auth.uid == uid; }
     function isAdmin() { return signedIn() && request.auth.token.admin == true; }
+    // A profile exists only once the age gate and consent batch have passed (Sec 6.1, Sec 11.3).
+    function hasProfile(uid) { return exists(/databases/$(database)/documents/users/$(uid)); }
     function data() { return request.resource.data; }
     function changed() { return data().diff(resource.data).affectedKeys(); }
     function optInt(name) { return !(name in data()) || data()[name] is int; }
@@ -29,12 +31,13 @@ service cloud.firestore {
     // Sec 2.1: card product, optional last four digits and the engine's own inputs (UserCard in
     // src/engine/types.ts). Any other field, such as a card number, expiry or CVV, is rejected.
     function validCard() {
-      return data().keys().hasAll(['cardId', 'anniversaryMonth'])
+      return data().keys().hasAll(['cardId'])
         && data().keys().hasOnly(['cardId', 'last4', 'openedOn', 'anniversaryMonth', 'feePaidOn',
              'ytdSpendRs', 'quarterSpendRs', 'monthSpendRs', 'pointsBalance', 'pointsExpireOn',
              'statementDay', 'dueDay', 'capUsedRs', 'loungeVisitsPerYear', 'loungeValueRs'])
         && data().cardId is string
-        && data().anniversaryMonth is int && data().anniversaryMonth >= 1 && data().anniversaryMonth <= 12
+        && (!('anniversaryMonth' in data())
+            || (data().anniversaryMonth is int && data().anniversaryMonth >= 1 && data().anniversaryMonth <= 12))
         && (!('last4' in data()) || (data().last4 is string && data().last4.matches('^[0-9]{4}$')))
         && (!('capUsedRs' in data()) || data().capUsedRs is map)
         && optInt('ytdSpendRs') && optInt('quarterSpendRs') && optInt('monthSpendRs')
@@ -61,7 +64,7 @@ service cloud.firestore {
 
       match /cards/{id} {
         allow read, delete: if isOwner(uid);
-        allow create, update: if isOwner(uid) && validCard();
+        allow create, update: if isOwner(uid) && hasProfile(uid) && validCard();
       }
       // Fan-out copies are written by the server (Admin SDK). The owner may only mark them read.
       match /alerts/{id} {
@@ -70,7 +73,8 @@ service cloud.firestore {
       }
       match /events/{id} {
         allow read: if isOwner(uid);
-        allow create: if isOwner(uid) && data().keys().hasOnly(['type', 'at', 'meta']) && data().type is string;
+        allow create: if isOwner(uid) && hasProfile(uid)
+          && data().keys().hasOnly(['type', 'at', 'meta']) && data().type is string;
       }
     }
 

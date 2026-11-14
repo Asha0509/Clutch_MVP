@@ -70,5 +70,5 @@ describe("engine purity lint rule (Sec 13 step 3)", () => {
     expect(rules.filter((r) => r === "no-restricted-imports")).toHaveLength(3);
     expect(rules.filter((r) => r === "no-restricted-syntax")).toHaveLength(5);
     expect(rules).toContain("no-restricted-globals");
-  });
+  }, 30_000);  // ESLint start-up can exceed the 5 s default
 });
