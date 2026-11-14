@@ -237,7 +237,7 @@ flowchart TD
     L["Landing"] --> T["Try it with your cards"]
     L --> D["Guided 2-minute demo (offline)"]
     T --> G{"Born 18+ years ago?"}
-    G -- no --> X["Ask a parent; nothing stored"]
+    G -- no --> X["Ask a parent, nothing stored"]
     G -- yes --> C["My cards: pick, add details, typical month<br/>or Fill with an example"]
     C --> K["Checkup: rupees at risk, with the working"]
     C --> P["Pay with: best of your cards, UPI on RuPay"]
@@ -264,7 +264,7 @@ sequenceDiagram
     participant E as src/engine
     participant U as Checkup (other tab)
     C->>R: GET pending changes
-    R->>F: fetch (cached 1 hour; saved copy if offline)
+    R->>F: fetch, cached for 1 hour, saved copy if offline
     R->>R: zod-validate, keep the 9 catalogue cards
     R-->>C: pending changes, newest first
     C->>C: Founder opens the bank notice, enters before and after, ticks "checked"
