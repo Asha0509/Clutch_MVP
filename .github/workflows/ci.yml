@@ -12,4 +12,5 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm lint
       - run: pnpm test
+      - run: pnpm test:rules
       - run: pnpm catalogue:check

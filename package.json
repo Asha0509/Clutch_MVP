@@ -10,7 +10,7 @@
     "typecheck": "next typegen && tsc --noEmit",
     "format": "prettier --write .",
     "test": "vitest run",
-    "test:rules": "firebase emulators:exec --only firestore \"vitest run tests/rules\"",
+    "test:rules": "firebase emulators:exec --only firestore --project demo-clutch \"vitest run --config vitest.rules.config.ts\"",
     "e2e": "playwright test",
     "emulators": "firebase emulators:start --only auth,firestore,functions",
     "catalogue:check": "tsx scripts/check-catalogue.ts"

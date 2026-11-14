@@ -1,22 +1,86 @@
 rules_version = '2';
-// PRD Sec 6.4. Deny by default; open only what is listed.
+// PRD Sec 6.4. Deny by default; open only what is listed. Tests: tests/rules (pnpm test:rules).
 service cloud.firestore {
   match /databases/{database}/documents {
     function signedIn() { return request.auth != null; }
+    function isOwner(uid) { return signedIn() && request.auth.uid == uid; }
     function isAdmin() { return signedIn() && request.auth.token.admin == true; }
+    function data() { return request.resource.data; }
+    function changed() { return data().diff(resource.data).affectedKeys(); }
+    function optInt(name) { return !(name in data()) || data()[name] is int; }
+
+    // Sec 6.1 under-18 gate (Founder decision: birth year + month). The 18th-birthday month counts as under 18.
+    function isAdult() {
+      let age = request.time.year() - data().dobYear;
+      return age > 18 || (age == 18 && data().dobMonth < request.time.month());
+    }
+
+    function validProfile() {
+      return data().keys().hasAll(['createdAt', 'displayName', 'email', 'dobYear', 'dobMonth', 'locale'])
+        && data().keys().hasOnly(['createdAt', 'displayName', 'email', 'dobYear', 'dobMonth', 'locale', 'spendProfile'])
+        && data().displayName is string
+        && data().email == request.auth.token.email
+        && data().dobYear is int
+        && data().dobMonth is int && data().dobMonth >= 1 && data().dobMonth <= 12
+        && data().locale is string
+        && (!('spendProfile' in data()) || data().spendProfile is map);
+    }
+
+    // Sec 2.1: card product, optional last four digits and the engine's own inputs (UserCard in
+    // src/engine/types.ts). Any other field, such as a card number, expiry or CVV, is rejected.
+    function validCard() {
+      return data().keys().hasAll(['cardId', 'anniversaryMonth'])
+        && data().keys().hasOnly(['cardId', 'last4', 'openedOn', 'anniversaryMonth', 'feePaidOn',
+             'ytdSpendRs', 'quarterSpendRs', 'monthSpendRs', 'pointsBalance', 'pointsExpireOn',
+             'statementDay', 'dueDay', 'capUsedRs', 'loungeVisitsPerYear', 'loungeValueRs'])
+        && data().cardId is string
+        && data().anniversaryMonth is int && data().anniversaryMonth >= 1 && data().anniversaryMonth <= 12
+        && (!('last4' in data()) || (data().last4 is string && data().last4.matches('^[0-9]{4}$')))
+        && (!('capUsedRs' in data()) || data().capUsedRs is map)
+        && optInt('ytdSpendRs') && optInt('quarterSpendRs') && optInt('monthSpendRs')
+        && optInt('pointsBalance') && optInt('statementDay') && optInt('dueDay')
+        && optInt('loungeVisitsPerYear') && optInt('loungeValueRs');
+    }
+
+    // Sec 11.2 purposes. Withdrawal is a new entry with granted == false.
+    function validConsent() {
+      return data().keys().hasAll(['purpose', 'granted', 'noticeVersion', 'at', 'userAgentHash'])
+        && data().keys().hasOnly(['purpose', 'granted', 'noticeVersion', 'at', 'userAgentHash'])
+        && data().purpose in ['core', 'alerts_email', 'alerts_push', 'marketing', 'ai_processing']
+        && data().granted is bool
+        && data().noticeVersion is string
+        && data().at == request.time
+        && data().userAgentHash is string;
+    }
 
     match /users/{uid} {
-      allow read, write: if signedIn() && request.auth.uid == uid;
-      match /{sub=**} {
-        allow read, write: if signedIn() && request.auth.uid == uid;
+      allow read, delete: if isOwner(uid);
+      allow create: if isOwner(uid) && validProfile() && data().createdAt == request.time && isAdult();
+      allow update: if isOwner(uid) && validProfile()
+        && !changed().hasAny(['email', 'dobYear', 'dobMonth', 'createdAt']);
+
+      match /cards/{id} {
+        allow read, delete: if isOwner(uid);
+        allow create, update: if isOwner(uid) && validCard();
+      }
+      // Fan-out copies are written by the server (Admin SDK). The owner may only mark them read.
+      match /alerts/{id} {
+        allow read: if isOwner(uid);
+        allow update: if isOwner(uid) && changed().hasOnly(['readAt']) && data().readAt == request.time;
+      }
+      match /events/{id} {
+        allow read: if isOwner(uid);
+        allow create: if isOwner(uid) && data().keys().hasOnly(['type', 'at', 'meta']) && data().type is string;
       }
     }
+
     match /alerts/{id} {
       allow read, write: if isAdmin();
     }
+
     match /consents/{uid}/log/{id} {
-      allow create: if signedIn() && request.auth.uid == uid;
-      allow read: if signedIn() && request.auth.uid == uid;
+      allow read: if isOwner(uid);
+      allow create: if isOwner(uid) && validConsent();
       allow update, delete: if false;
     }
   }
