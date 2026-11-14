@@ -345,7 +345,7 @@ Open legal question (Sec 15): whether the RBI directions that take effect 1 Janu
 
 ## Sec 10. Alert pipeline
 
-1. `ingestChangeFeed` (daily): fetch CardAdvisor `changes.json` (snapshot copy kept in `data/feed-snapshots/`; no runtime dependency on the API for the demo). For each new event on a catalogue card, write `alerts/{id}` with status `pending`.
+1. `ingestChangeFeed` (daily, 06:00 IST): fetch the live CardAdvisor `changes.json` (Founder decision, 2026-11-14; URL set by the `FEED_URL` parameter). For each new event on a catalogue card, write `alerts/{id}` with status `pending`. Demo mode does not depend on it.
 2. Founder opens the admin console. For each pending alert: open the issuer notice, confirm the before and after values, paste the issuer URL, set verification tier, then approve or reject.
 3. `approveAlert`: for every user holding the card, compute `impactOfChange` using the engine, create `users/{uid}/alerts/{id}`, send email and web push.
 4. Wording: template first. Gemini may rephrase the template only if the facts are passed in and its output passes the "no new numbers" check (Sec 2.3).
@@ -504,7 +504,7 @@ Pin versions at scaffold time and record them in `docs/build-log.md`. Do not rel
 | Auth, data | Firebase Auth, Firestore | Google sign-in |
 | Server | Cloud Functions 2nd gen | Node, TypeScript |
 | Push | Firebase Cloud Messaging web push | |
-| Email | Resend (3,000 a month free) or Brevo (300 a day free) | pick one at build |
+| Email | Resend (3,000 a month free), chosen 2026-11-14 | HTTP API via fetch; emulator writes to an `outbox` collection instead |
 | LLM | Gemini API, paid tier | model name from env |
 | Test | Vitest, Playwright, Firebase emulator rules tests | |
 | Lint, format | Biome (or ESLint plus Prettier) | one tool, in a hook |
