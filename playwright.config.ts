@@ -5,6 +5,8 @@ import { defineConfig } from "@playwright/test";
 export default defineConfig({
   testDir: "tests/e2e",
   timeout: 180_000,
+  // One dev server and shared emulators: parallel browsers overloaded them (build log 2026-11-14).
+  workers: 1,
   // The dev server compiles each route on first visit, which can take several seconds.
   expect: { timeout: 20_000 },
   use: { baseURL: "http://localhost:3100", trace: "retain-on-failure" },
