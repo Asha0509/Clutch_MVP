@@ -100,3 +100,102 @@ export type LoungeRule = z.infer<typeof LoungeRule>;
 export type UpiRule = z.infer<typeof UpiRule>;
 export type Card = z.infer<typeof Card>;
 export type Catalogue = z.infer<typeof Catalogue>;
+
+// Sec 7.2 user card fields, plus the inputs the engine needs (Sec 8.2 deviations, build log 2026-11-14).
+const IsoDate = z.iso.date();
+const Rs = z.number().int().nonnegative();
+const DayOfMonth = z.number().int().min(1).max(31);
+
+export const UserCard = z.object({
+  cardId: z.string(),
+  last4: z
+    .string()
+    .regex(/^\d{4}$/)
+    .optional(),
+  openedOn: IsoDate.optional(),
+  anniversaryMonth: z.number().int().min(1).max(12),
+  feePaidOn: IsoDate.optional(),
+  ytdSpendRs: Rs.optional(), // spend since the last card anniversary
+  quarterSpendRs: Rs.optional(), // spend in the current calendar quarter
+  monthSpendRs: Rs.optional(), // spend in the current calendar month
+  pointsBalance: z.number().int().nonnegative().optional(),
+  pointsExpireOn: IsoDate.optional(),
+  statementDay: DayOfMonth.optional(),
+  dueDay: DayOfMonth.optional(),
+  capUsedRs: z.partialRecord(Category, Rs).optional(), // cap used so far this period, by category
+  loungeVisitsPerYear: z.number().int().nonnegative().optional(),
+  loungeValueRs: Rs.optional(), // user's own value per visit; the catalogue has none
+});
+
+export const SpendProfile = z.partialRecord(Category, Rs); // monthly rupees per category
+
+export const Spend = z.object({
+  category: Category,
+  amountRs: Rs,
+  channel: z.enum(["card", "upi", "online", "pos"]),
+  merchant: z.string().optional(),
+});
+
+export type UserCard = z.infer<typeof UserCard>;
+export type HeldCard = UserCard & { card: Card };
+export type SpendProfile = z.infer<typeof SpendProfile>;
+export type Spend = z.infer<typeof Spend>;
+
+export type Ranked = {
+  cardId: string;
+  name: string;
+  eligible: boolean;
+  rewardRs: number;
+  ratePct: number;
+  reason: string;
+  caveats: string[];
+  bonus: { benefit: string; benefitValueRs: number | null } | null;
+  timing: string | null;
+};
+
+export type WaiverProgress = {
+  spentRs: number | null;
+  targetRs: number;
+  remainingRs: number | null;
+  daysLeft: number;
+  onTrack: boolean | null;
+};
+
+export type MilestoneStatus = {
+  benefit: string;
+  benefitValueRs: number | null;
+  period: Milestone["period"];
+  targetRs: number;
+  spentRs: number | null;
+  remainingRs: number | null;
+  daysLeft: number;
+  status: "done" | "on-track" | "behind" | "unknown";
+};
+
+export type Reminder = {
+  cardId: string;
+  kind: "expiring" | "unknown";
+  daysLeft: number | null;
+  tier: 60 | 30 | 7 | null;
+  valueRs: number | null;
+  text: string;
+};
+
+export type RiskItem = {
+  cardId: string;
+  kind: "points-expiry" | "fee" | "milestone";
+  rupees: number;
+  text: string;
+};
+
+export type Verdict = {
+  decision: "keep" | "downgrade" | "close";
+  reasons: string[];
+  caveats: string[];
+  netValueRs: number;
+};
+
+export type Change =
+  | { kind: "rate"; category: Category; beforePct: number; afterPct: number }
+  | { kind: "fee"; beforeRs: number; afterRs: number }
+  | { kind: "other"; description: string };
