@@ -189,8 +189,9 @@ describe("nothing is stored before an adult profile exists (Sec 6.1, Sec 11.3)",
 });
 
 describe("held cards store no sensitive card data (Sec 2.1)", () => {
+  // Card documents live under their catalogue id.
   const put = (data: Record<string, unknown>) =>
-    setDoc(doc(as(B), "users/bob/cards/c2"), data);
+    setDoc(doc(as(B), `users/bob/cards/${String(data.cardId ?? "hdfc-millennia")}`), data);
   it("allows the product, an optional last four digits and the engine inputs", async () => {
     await assertSucceeds(
       put(
@@ -213,6 +214,9 @@ describe("held cards store no sensitive card data (Sec 2.1)", () => {
     await assertFails(put(userCard({ cvv: "123" })));
     await assertFails(put(userCard({ notes: "anything" })));
   });
+  it("stores each card under its own product id, so one product cannot be held twice", async () => {
+    await assertFails(setDoc(doc(as(B), "users/bob/cards/other-id"), userCard()));
+  });
   it("needs the product; the fee month is optional but must be 1 to 12", async () => {
     await assertFails(put({ anniversaryMonth: 3 }));
     await assertSucceeds(put({ cardId: "hdfc-millennia" }));
@@ -231,6 +235,11 @@ describe("alerts", () => {
     );
     await assertFails(setDoc(doc(db, "users/bob/alerts/a2"), { alertId: "y" }));
     await assertFails(deleteDoc(doc(db, "users/bob/alerts/a1")));
+  });
+  it("lets an admin read alerts but never write them: decisions go through approveAlert", async () => {
+    await assertSucceeds(getDoc(doc(as(B, { admin: true }), "alerts/p1")));
+    await assertFails(updateDoc(doc(as(B, { admin: true }), "alerts/p1"), { status: "approved" }));
+    await assertFails(setDoc(doc(as(B, { admin: true }), "alerts/p2"), { status: "pending" }));
   });
   it("keeps pending alerts admin-only", async () => {
     await assertFails(getDoc(doc(as(B), "alerts/p1")));

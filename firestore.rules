@@ -64,7 +64,8 @@ service cloud.firestore {
 
       match /cards/{id} {
         allow read, delete: if isOwner(uid);
-        allow create, update: if isOwner(uid) && hasProfile(uid) && validCard();
+        // The document id is the catalogue card id, so one product is held once (no duplicate alerts).
+        allow create, update: if isOwner(uid) && hasProfile(uid) && validCard() && data().cardId == id;
       }
       // Fan-out copies are written by the server (Admin SDK). The owner may only mark them read.
       match /alerts/{id} {
@@ -78,8 +79,9 @@ service cloud.firestore {
       }
     }
 
+    // Admins read; every decision goes through the approveAlert function (PRD Sec 10.2), never the client.
     match /alerts/{id} {
-      allow read, write: if isAdmin();
+      allow read: if isAdmin();
     }
 
     match /consents/{uid}/log/{id} {
