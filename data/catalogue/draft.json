@@ -3,48 +3,6 @@
   "source": "CardAdvisor — India Credit Card Facts Dataset v2026-09-17, https://cardadvisor.in/data/v/2026-09-17/cards.json.",
   "cards": [
     {
-      "id": "hdfc-moneyback-plus",
-      "issuer": "HDFC",
-      "name": "HDFC MoneyBack+ Credit Card",
-      "network": "MASTERCARD",
-      "joiningFeeRs": 500,
-      "annualFeeRs": 500,
-      "lifetimeFree": false,
-      "feeWaiverSpendRs": 50000,
-      "forexMarkupPct": 3.5,
-      "rewards": [
-        {
-          "category": "other",
-          "ratePct": 0.2,
-          "monthlyCapRs": null,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [],
-          "pointValuePaisa": 20
-        },
-        {
-          "category": "online-shopping",
-          "ratePct": 2,
-          "monthlyCapRs": 500,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [
-            "Flipkart",
-            "Amazon",
-            "Swiggy",
-            "Reliance Smart",
-            "BigBasket"
-          ],
-          "pointValuePaisa": 20
-        }
-      ],
-      "milestones": [],
-      "pointsExpiryMonths": null,
-      "lounge": null,
-      "upiOnCredit": null,
-      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
-    },
-    {
       "id": "hdfc-swiggy",
       "issuer": "HDFC",
       "name": "Swiggy HDFC Bank Credit Card",

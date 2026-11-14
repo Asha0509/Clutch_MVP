@@ -605,6 +605,60 @@
         "on": "2026-11-14",
         "sourceUrl": "https://www.axis.bank.in/cards/credit-card/flipkart-axisbank-credit-card"
       }
+    },
+    {
+      "id": "hdfc-moneyback-plus",
+      "issuer": "HDFC",
+      "name": "HDFC MoneyBack+ Credit Card",
+      "network": "MASTERCARD",
+      "joiningFeeRs": 500,
+      "annualFeeRs": 500,
+      "lifetimeFree": false,
+      "feeWaiverSpendRs": 50000,
+      "forexMarkupPct": null,
+      "rewards": [
+        {
+          "category": "other",
+          "ratePct": 0.2,
+          "monthlyCapRs": null,
+          "capPeriod": "month",
+          "capBasis": null,
+          "exclusions": ["fuel", "wallet-load", "rent", "government"],
+          "merchants": [],
+          "pointValuePaisa": 20
+        },
+        {
+          "category": "online-shopping",
+          "ratePct": 2,
+          "monthlyCapRs": 500,
+          "capPeriod": "month",
+          "capBasis": "reward",
+          "exclusions": ["fuel", "wallet-load", "rent", "government"],
+          "merchants": [
+            "Amazon",
+            "BigBasket",
+            "Flipkart",
+            "Reliance Smart SuperStore",
+            "Swiggy"
+          ],
+          "pointValuePaisa": 20
+        }
+      ],
+      "milestones": [
+        {
+          "period": "quarter",
+          "spendRs": 50000,
+          "benefit": "Gift voucher worth Rs 500",
+          "benefitValueRs": 500
+        }
+      ],
+      "pointsExpiryMonths": 24,
+      "lounge": null,
+      "upiOnCredit": null,
+      "verified": {
+        "on": "2026-11-14",
+        "sourceUrl": "https://www.hdfc.bank.in/credit-cards/moneyback-plus-credit-card"
+      }
     }
   ]
 }
