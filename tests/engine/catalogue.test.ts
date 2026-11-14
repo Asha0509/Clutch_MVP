@@ -57,6 +57,26 @@ describe("Catalogue schema (Sec 7.1)", () => {
     expect(Catalogue.safeParse(wrap([bad])).success).toBe(false);
   });
 
+  it("accepts a quarterly cap and a yearly lounge count", () => {
+    const ok = {
+      ...card,
+      rewards: [{ ...card.rewards[0], monthlyCapRs: 4000, capPeriod: "quarter" }],
+      lounge: {
+        domesticPerQuarter: null,
+        domesticPerYear: 4,
+        internationalPerYear: null,
+        spendGateRs: 50000,
+        gatePeriod: "3-months",
+      },
+    };
+    expect(Catalogue.safeParse(wrap([ok])).success).toBe(true);
+  });
+
+  it("rejects an unknown cap period", () => {
+    const bad = { ...card, rewards: [{ ...card.rewards[0], capPeriod: "week" }] };
+    expect(Catalogue.safeParse(wrap([bad])).success).toBe(false);
+  });
+
   it("rejects duplicate card ids", () => {
     expect(Catalogue.safeParse(wrap([card, card])).success).toBe(false);
   });

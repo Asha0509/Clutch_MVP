@@ -23,7 +23,9 @@ export const Category = z.enum([
 export const RewardRule = z.object({
   category: Category,
   ratePct: z.number().nonnegative(),
+  // Rupee cap per `capPeriod` (kept as monthlyCapRs to match Sec 7.1).
   monthlyCapRs: z.number().int().nonnegative().nullable(),
+  capPeriod: z.enum(["month", "quarter"]).default("month"),
   capBasis: z.enum(["reward", "spend"]).nullable(),
   exclusions: z.array(Category),
   // Empty means the whole category; otherwise the rate applies only at these merchants.
@@ -41,9 +43,10 @@ export const Milestone = z.object({
 // Null counts mean the card has no access of that kind.
 export const LoungeRule = z.object({
   domesticPerQuarter: z.number().int().nonnegative().nullable(),
+  domesticPerYear: z.number().int().nonnegative().nullable().default(null),
   internationalPerYear: z.number().int().nonnegative().nullable(),
   spendGateRs: z.number().int().nonnegative().nullable(),
-  gatePeriod: z.enum(["month", "quarter"]).nullable(),
+  gatePeriod: z.enum(["month", "quarter", "3-months"]).nullable(),
 });
 
 // Sec 8.3 rule 3. ratePct null means the base rate applies.
