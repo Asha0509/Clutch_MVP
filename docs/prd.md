@@ -252,7 +252,7 @@ type UpiRule = {
 | Path | Fields | Notes |
 |---|---|---|
 | `users/{uid}` | createdAt, displayName, email, dobYear, dobMonth, locale, spendProfile? (monthly Rs by category) | email only for sending alerts |
-| `users/{uid}/cards/{id}` | cardId, last4?, openedOn?, anniversaryMonth, feePaidOn?, ytdSpendRs?, quarterSpendRs?, monthSpendRs?, pointsBalance?, pointsExpireOn?, statementDay?, dueDay?, capUsedRs? (by category), loungeVisitsPerYear?, loungeValueRs? | all user entered; the last five feed the engine (Sec 8.2) |
+| `users/{uid}/cards/{id}` | cardId, last4?, openedOn?, anniversaryMonth? (fee month; unlocks waiver tracking), feePaidOn?, ytdSpendRs?, quarterSpendRs?, monthSpendRs?, pointsBalance?, pointsExpireOn?, statementDay?, dueDay?, capUsedRs? (by category), loungeVisitsPerYear?, loungeValueRs? | all user entered; the last five feed the engine (Sec 8.2) |
 | `users/{uid}/alerts/{id}` | alertId, cardId, readAt?, sentVia[] | fan-out copy |
 | `users/{uid}/events/{id}` | type, at, meta | product analytics, own data only |
 | `alerts/{id}` (admin) | cardId, changeType, before, after, issuerUrl, verification, status (pending, approved, rejected), approvedBy, approvedAt | |
