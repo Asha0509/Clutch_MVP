@@ -52,3 +52,10 @@ test-results/
 .firebase/
 coverage/
 CLAUDE.local.md
+
+# playwright
+/test-results/
+/playwright-report/
+
+# firebase emulator logs
+*-debug.log
