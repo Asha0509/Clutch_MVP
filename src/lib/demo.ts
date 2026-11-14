@@ -1,7 +1,7 @@
 import { impactOfChange } from "@/engine/impact";
 import type { Change, HeldCard, SpendProfile } from "@/engine/types";
 import { catalogue } from "./catalogue";
-import type { UserAlert } from "./user-data";
+import type { UserAlert } from "./local-store";
 
 // PRD Sec 3.3 demo mode: a made-up person holding three real catalogue cards. Spend and dates are
 // examples, set relative to today so the timeline never goes stale. No network, no Firebase.

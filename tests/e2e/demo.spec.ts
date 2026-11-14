@@ -1,5 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-import { shoot } from "../e2e/helpers";
+import { shoot } from "./helpers";
 
 // PRD Sec 16.3: checkup, a change on a held card, the waiver bar, pay with, verdict. Figures are the
 // ones worked by hand in tests/lib/demo.test.ts.
@@ -89,7 +89,7 @@ test("investor demo: five steps with the hand-worked figures, then the same offl
   await page.goto("/");
   await cleanCopy(page);
   await shoot(page, "landing");
-  await page.getByRole("link", { name: "See the 2-minute demo" }).click();
+  await page.getByRole("link", { name: "Guided 2-minute demo" }).click();
 
   await page.getByRole("button", { name: "Presenter notes" }).click();
   await expect(page.getByTestId("presenter-notes")).toContainText(

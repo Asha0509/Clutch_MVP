@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { alertsFromFeed } from "../../functions/src/feed";
+import { alertsFromFeed } from "@/lib/feed";
 
 const feed = JSON.parse(readFileSync("data/fixtures/feed-sample.json", "utf8"));
 const shipped = new Set(["hdfc-millennia", "hdfc-regalia-gold", "sbi-cashback", "axis-ace", "icici-amazon-pay"]);

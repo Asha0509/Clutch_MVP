@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Dialog,
@@ -18,10 +18,18 @@ import {
   NativeSelectOption,
 } from "@/components/ui/native-select";
 import { formatRs } from "@/engine/format";
-import { UserCard } from "@/engine/types";
+import { type Category, SpendProfile, UserCard } from "@/engine/types";
+import { todayUtc } from "@/lib/age";
 import { catalogue } from "@/lib/catalogue";
-import { useProfileUser } from "@/lib/use-user";
-import { removeCard, saveCard, watchCards } from "@/lib/user-data";
+import { CATEGORY_LABELS } from "@/lib/labels";
+import {
+  clearAll,
+  exampleState,
+  type LocalState,
+  removeCardFrom,
+  update,
+} from "@/lib/local-store";
+import { Gate } from "./gate";
 
 const MONTHS = [
   "January",
@@ -66,6 +74,8 @@ const FIELDS = [
 ] as const;
 type FieldKey = (typeof FIELDS)[number]["key"] | "anniversaryMonth";
 type Draft = Record<FieldKey, string>;
+const CATEGORIES = Object.keys(CATEGORY_LABELS) as Category[];
+type SpendDraft = Partial<Record<Category, string>>;
 
 const toDraft = (c: UserCard): Draft =>
   Object.fromEntries(
@@ -74,6 +84,19 @@ const toDraft = (c: UserCard): Draft =>
       String(c[k as keyof UserCard] ?? ""),
     ]),
   ) as Draft;
+
+const toSpendDraft = (p: SpendProfile = {}): SpendDraft =>
+  Object.fromEntries(Object.entries(p).map(([k, v]) => [k, String(v)]));
+
+// Blank means nothing spent there. Whole rupees only, like every other money input (zod checks it).
+const fromSpendDraft = (d: SpendDraft) =>
+  SpendProfile.safeParse(
+    Object.fromEntries(
+      Object.entries(d)
+        .filter(([, v]) => v !== undefined && v.trim() !== "")
+        .map(([k, v]) => [k, Number(v)]),
+    ),
+  );
 
 function fromDraft(cardId: string, d: Draft, keep: UserCard) {
   const num = (s: string) => (s.trim() === "" ? undefined : Number(s));
@@ -94,26 +117,24 @@ function fromDraft(cardId: string, d: Draft, keep: UserCard) {
 }
 
 export function CardsScreen() {
-  const user = useProfileUser();
-  const [held, setHeld] = useState<UserCard[]>([]);
+  return <Gate>{(s) => <Cards s={s} />}</Gate>;
+}
+
+// PRD F2: pick cards, add what you know. Saved in this browser; every screen recomputes at once.
+function Cards({ s }: { s: LocalState }) {
+  const held = s.cards;
   const [query, setQuery] = useState("");
   const [editing, setEditing] = useState<UserCard | null>(null);
   const [draft, setDraft] = useState<Draft | null>(null);
+  const [spend, setSpend] = useState<SpendDraft>({});
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (!user) return;
-    return watchCards(user.uid, setHeld);
-  }, [user]);
-
-  const heldIds = useMemo(() => new Set(held.map((h) => h.cardId)), [held]);
+  const heldIds = new Set(held.map((h) => h.cardId));
   const choices = catalogue.cards.filter(
     (c) =>
       !heldIds.has(c.id) &&
       `${c.name} ${c.issuer}`.toLowerCase().includes(query.toLowerCase()),
   );
-
-  if (!user) return <p className="py-10 text-muted-foreground">Loading…</p>;
 
   return (
     <section className="space-y-8 py-6">
@@ -123,6 +144,20 @@ export function CardsScreen() {
           Tap the cards you hold. Details are optional and make the checkup
           sharper.
         </p>
+        <div className="flex flex-wrap gap-2 pt-1">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => update(() => exampleState(todayUtc(new Date())))}
+          >
+            Fill with an example
+          </Button>
+          {held.length > 0 && (
+            <Button variant="ghost" size="sm" onClick={clearAll}>
+              Clear my data
+            </Button>
+          )}
+        </div>
       </div>
 
       {held.length > 0 && (
@@ -149,6 +184,7 @@ export function CardsScreen() {
                     setError(null);
                     setEditing(h);
                     setDraft(toDraft(h));
+                    setSpend(toSpendDraft(s.profiles[h.cardId]));
                   }}
                 >
                   Add details
@@ -156,7 +192,7 @@ export function CardsScreen() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => void removeCard(user.uid, h.cardId)}
+                  onClick={() => update((st) => removeCardFrom(st, h.cardId))}
                 >
                   Remove
                 </Button>
@@ -196,7 +232,12 @@ export function CardsScreen() {
               <button
                 type="button"
                 className="flex w-full items-center justify-between gap-3 rounded-lg border bg-card p-3 text-left hover:bg-muted"
-                onClick={() => void saveCard(user.uid, { cardId: c.id })}
+                onClick={() =>
+                  update((st) => ({
+                    ...st,
+                    cards: [...st.cards, { cardId: c.id }],
+                  }))
+                }
               >
                 <span>
                   <span className="block font-medium">{c.name}</span>
@@ -238,13 +279,19 @@ export function CardsScreen() {
               onSubmit={(e) => {
                 e.preventDefault();
                 const parsed = fromDraft(editing.cardId, draft, editing);
-                if (!parsed.success)
+                const profile = fromSpendDraft(spend);
+                if (!parsed.success || !profile.success)
                   return setError(
-                    "Check the highlighted values: whole numbers, days 1 to 31, last four digits only.",
+                    "Check the values: whole rupees, days 1 to 31, last four digits only.",
                   );
-                saveCard(user.uid, parsed.data)
-                  .then(() => setEditing(null))
-                  .catch(() => setError("We could not save that. Try again."));
+                update((st) => ({
+                  ...st,
+                  cards: st.cards.map((c) =>
+                    c.cardId === editing.cardId ? parsed.data : c,
+                  ),
+                  profiles: { ...st.profiles, [editing.cardId]: profile.data },
+                }));
+                setEditing(null);
               }}
             >
               <Field>
@@ -287,6 +334,34 @@ export function CardsScreen() {
                   />
                 </Field>
               ))}
+              <fieldset className="space-y-3 pt-2">
+                <legend className="font-medium">
+                  A typical month on this card, in Rs
+                </legend>
+                <p className="text-sm text-muted-foreground">
+                  Used for the verdict and to price bank changes for you. Leave
+                  blank what you do not spend.
+                </p>
+                <div className="grid grid-cols-2 gap-3">
+                  {CATEGORIES.map((c) => (
+                    <Field key={c}>
+                      <FieldLabel htmlFor={`spend-${c}`}>
+                        {CATEGORY_LABELS[c]}
+                      </FieldLabel>
+                      <Input
+                        id={`spend-${c}`}
+                        type="number"
+                        inputMode="numeric"
+                        min={0}
+                        value={spend[c] ?? ""}
+                        onChange={(e) =>
+                          setSpend({ ...spend, [c]: e.target.value })
+                        }
+                      />
+                    </Field>
+                  ))}
+                </div>
+              </fieldset>
               {error && <p className="text-sm text-destructive">{error}</p>}
             </form>
             <DialogFooter>

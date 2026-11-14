@@ -11,11 +11,10 @@
     "format": "prettier --write .",
     "test": "vitest run",
     "test:rules": "firebase emulators:exec --only firestore --project demo-clutch \"vitest run --config vitest.rules.config.ts\"",
-    "e2e": "pnpm --filter clutch-functions build && firebase emulators:exec --only auth,firestore,functions --project demo-clutch \"playwright test\"",
+    "e2e": "playwright test --project e2e",
     "emulators": "pnpm --filter clutch-functions build && firebase emulators:start --only auth,firestore,functions --project demo-clutch",
     "catalogue:check": "tsx scripts/check-catalogue.ts",
-    "e2e:demo": "playwright test -c playwright.demo.config.ts --project demo",
-    "demo:record": "playwright test -c playwright.demo.config.ts --project record"
+    "demo:record": "playwright test --project record"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",

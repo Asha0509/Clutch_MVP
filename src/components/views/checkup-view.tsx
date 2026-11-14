@@ -8,7 +8,7 @@ import { waiverProgress } from "@/engine/progress";
 import type { HeldCard } from "@/engine/types";
 import { impactLine } from "@/lib/alert-copy";
 import { catalogue } from "@/lib/catalogue";
-import type { UserAlert } from "@/lib/user-data";
+import type { UserAlert } from "@/lib/local-store";
 
 // Pure views for PRD F3, F5 and F7. Every rupee figure comes from src/engine. The live checkup and
 // the demo pass their own cards, alerts and today's date; nothing here reads Firebase.

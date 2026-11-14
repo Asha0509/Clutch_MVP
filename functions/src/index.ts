@@ -11,7 +11,7 @@ import { type Change, SpendProfile, UserCard } from "../../src/engine/types";
 import { catalogue } from "../../src/lib/catalogue";
 import { ApproveInput } from "./approve";
 import { type AlertFacts, alertEmail } from "./email";
-import { alertsFromFeed, type PendingAlert } from "./feed";
+import { alertsFromFeed, type PendingAlert } from "../../src/lib/feed";
 
 // PRD Sec 5 and Sec 10. Region close to users in India.
 setGlobalOptions({ region: "asia-south1" });

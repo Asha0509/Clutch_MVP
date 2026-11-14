@@ -38,16 +38,19 @@ export default function Home() {
           2026).
         </p>
         <div className="flex flex-wrap items-center gap-3 pt-2">
-          <Link href="/demo/checkup" className={buttonVariants({ size: "lg" })}>
-            See the 2-minute demo
+          <Link href="/start" className={buttonVariants({ size: "lg" })}>
+            Try it with your cards
           </Link>
           <Link
-            href="/start"
-            className={buttonVariants({ variant: "ghost", size: "sm" })}
+            href="/demo/checkup"
+            className={buttonVariants({ variant: "secondary", size: "lg" })}
           >
-            Live mode (needs local setup)
+            Guided 2-minute demo
           </Link>
         </div>
+        <p className="text-sm text-muted-foreground">
+          No sign-in. Your cards stay in this browser.
+        </p>
       </div>
 
       <ol className="grid gap-4 sm:grid-cols-3">
