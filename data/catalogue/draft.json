@@ -352,42 +352,6 @@
       "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
     },
     {
-      "id": "icici-amazon-pay",
-      "issuer": "ICICI",
-      "name": "Amazon Pay ICICI Bank Credit Card",
-      "network": "VISA",
-      "joiningFeeRs": 0,
-      "annualFeeRs": 0,
-      "lifetimeFree": true,
-      "feeWaiverSpendRs": null,
-      "forexMarkupPct": 1.99,
-      "rewards": [
-        {
-          "category": "online-shopping",
-          "ratePct": 5,
-          "monthlyCapRs": null,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": ["Amazon"],
-          "pointValuePaisa": 100
-        },
-        {
-          "category": "other",
-          "ratePct": 1,
-          "monthlyCapRs": null,
-          "capBasis": null,
-          "exclusions": [],
-          "merchants": [],
-          "pointValuePaisa": 100
-        }
-      ],
-      "milestones": [],
-      "pointsExpiryMonths": null,
-      "lounge": null,
-      "upiOnCredit": null,
-      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
-    },
-    {
       "id": "icici-coral",
       "issuer": "ICICI",
       "name": "ICICI Bank Coral Credit Card",
@@ -439,7 +403,7 @@
       "pointsExpiryMonths": null,
       "lounge": null,
       "upiOnCredit": null,
-      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked"
+      "_unverified": "seeded from CardAdvisor v2026-09-17; capBasis, exclusions, milestones, expiry, lounge, UPI not yet checked; BLOCKED: ICICI documents give no reward point value; MITC per-category cap table is garbled in text extraction"
     },
     {
       "id": "icici-rubyx",

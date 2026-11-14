@@ -391,6 +391,54 @@
         "on": "2026-11-13",
         "sourceUrl": "https://www.sbicard.com/en/personal/credit-cards/rewards/cashback-sbi-card.page"
       }
+    },
+    {
+      "id": "icici-amazon-pay",
+      "issuer": "ICICI",
+      "name": "Amazon Pay ICICI Bank Credit Card",
+      "network": "VISA",
+      "joiningFeeRs": 0,
+      "annualFeeRs": 0,
+      "lifetimeFree": true,
+      "feeWaiverSpendRs": null,
+      "forexMarkupPct": 1.99,
+      "rewards": [
+        {
+          "category": "online-shopping",
+          "ratePct": 3,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": ["rent", "fuel"],
+          "merchants": ["Amazon.in"],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "online-shopping",
+          "ratePct": 2,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": ["rent", "fuel"],
+          "merchants": ["Amazon Pay partner websites"],
+          "pointValuePaisa": 100
+        },
+        {
+          "category": "other",
+          "ratePct": 1,
+          "monthlyCapRs": null,
+          "capBasis": null,
+          "exclusions": ["rent", "fuel"],
+          "merchants": [],
+          "pointValuePaisa": 100
+        }
+      ],
+      "milestones": [],
+      "pointsExpiryMonths": null,
+      "lounge": null,
+      "upiOnCredit": null,
+      "verified": {
+        "on": "2026-11-13",
+        "sourceUrl": "https://www.icicibank.com/personal-banking/cards/credit-card/amazon-pay-credit-card"
+      }
     }
   ]
 }
