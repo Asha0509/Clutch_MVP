@@ -25,16 +25,17 @@ export default function Home() {
           See what your credit cards are quietly costing you, in rupees.
         </h1>
         <p className="text-lg text-muted-foreground">
-          For people in India who hold more than one credit card. Clutch reads
-          each bank&apos;s published terms and tells you, card by card, what to
-          do next.
+          For people in India who hold more than one credit card. Clutch works
+          from a hand-checked catalogue of each bank&apos;s published terms (9
+          cards so far) and tells you, card by card, what to do next.
         </p>
         <p className="text-sm text-muted-foreground">
           Card rules change often: the{" "}
           <a className="underline" href="https://cardadvisor.in/data">
             CardAdvisor public change log
           </a>{" "}
-          records more than 800 rule changes across Indian credit cards.
+          records 844 distinct changes to Indian credit cards (checked 14 Nov
+          2026).
         </p>
         <div className="flex flex-wrap items-center gap-3 pt-2">
           <Link href="/demo/checkup" className={buttonVariants({ size: "lg" })}>

@@ -1,6 +1,6 @@
 // Clutch service worker: makes the investor demo work offline (PRD Sec 3.3, Sec 13 step 9).
 // Pages: network first, falling back to the cached copy. Static assets: cache first.
-const CACHE = "clutch-demo-v1";
+const CACHE = "clutch-demo-v2";
 const PAGES = [
   "/",
   "/demo/checkup",
@@ -64,11 +64,16 @@ self.addEventListener("fetch", (event) => {
       .catch(() =>
         caches.match(request).then((hit) => {
           if (hit) return hit;
-          // A full page load falls back to the demo's first step; data requests simply fail, and
-          // Next.js then loads the page in full, which the cache can answer.
-          return request.mode === "navigate"
-            ? caches.match("/demo/checkup")
-            : Response.error();
+          if (request.mode !== "navigate") return Response.error(); // Next.js then loads the page in full
+          // Only demo pages fall back to the demo; live pages must never show the made-up person's figures.
+          if (url.pathname === "/" || url.pathname.startsWith("/demo"))
+            return caches.match("/demo/checkup");
+          return new Response(
+            "<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width'><title>Offline</title>" +
+              "<p style='font-family:sans-serif;padding:1rem'>You are offline. This page needs a connection. " +
+              "<a href='/demo/checkup'>The demo</a> works offline.</p>",
+            { headers: { "Content-Type": "text/html; charset=utf-8" } },
+          );
         }),
       ),
   );
