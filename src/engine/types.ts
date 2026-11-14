@@ -195,7 +195,15 @@ export type Verdict = {
   netValueRs: number;
 };
 
-export type Change =
-  | { kind: "rate"; category: Category; beforePct: number; afterPct: number }
-  | { kind: "fee"; beforeRs: number; afterRs: number }
-  | { kind: "other"; description: string };
+// A card rule change the engine can price (Sec 8.2 impactOfChange). Entered by the Founder on approval (Sec 10.2).
+export const Change = z.discriminatedUnion("kind", [
+  z.object({
+    kind: z.literal("rate"),
+    category: Category,
+    beforePct: z.number().nonnegative(),
+    afterPct: z.number().nonnegative(),
+  }),
+  z.object({ kind: z.literal("fee"), beforeRs: Rs, afterRs: Rs }),
+  z.object({ kind: z.literal("other"), description: z.string().min(1) }),
+]);
+export type Change = z.infer<typeof Change>;
