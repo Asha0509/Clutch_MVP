@@ -251,8 +251,8 @@ type UpiRule = {
 
 | Path | Fields | Notes |
 |---|---|---|
-| `users/{uid}` | createdAt, displayName, email, dobYear, locale | email only for sending alerts |
-| `users/{uid}/cards/{id}` | cardId, last4?, openedOn?, anniversaryMonth, feePaidOn?, ytdSpendRs?, pointsBalance?, pointsExpireOn?, statementDay?, dueDay? | all user entered |
+| `users/{uid}` | createdAt, displayName, email, dobYear, locale, spendProfile? (monthly Rs by category) | email only for sending alerts |
+| `users/{uid}/cards/{id}` | cardId, last4?, openedOn?, anniversaryMonth, feePaidOn?, ytdSpendRs?, quarterSpendRs?, monthSpendRs?, pointsBalance?, pointsExpireOn?, statementDay?, dueDay?, capUsedRs? (by category), loungeVisitsPerYear?, loungeValueRs? | all user entered; the last five feed the engine (Sec 8.2) |
 | `users/{uid}/alerts/{id}` | alertId, cardId, readAt?, sentVia[] | fan-out copy |
 | `users/{uid}/events/{id}` | type, at, meta | product analytics, own data only |
 | `alerts/{id}` (admin) | cardId, changeType, before, after, issuerUrl, verification, status (pending, approved, rejected), approvedBy, approvedAt | |
@@ -286,13 +286,14 @@ Pure functions, no I/O, no clock reads (time is passed in). 100% of money logic.
 ### 8.2 Functions
 
 ```ts
-bestCard(held: HeldCard[], spend: {category, amountRs, channel: "card"|"upi"|"online"|"pos", date}): Ranked[]
+// Approved 2026-11-14: verdict, bestCard and impactOfChange take the extra inputs they need (build log).
+bestCard(held: HeldCard[], spend: {category, amountRs, channel: "card"|"upi"|"online"|"pos", merchant?}, today: Date): Ranked[]
 checkup(held: HeldCard[], today: Date): { atRiskRs: number; items: RiskItem[]; top3: RiskItem[] }
-waiverProgress(card: HeldCard, today: Date): { spentRs, targetRs, remainingRs, daysLeft, onTrack: boolean }
+waiverProgress(card: HeldCard, today: Date): { spentRs, targetRs, remainingRs, daysLeft, onTrack: boolean | null } | null
 milestoneProgress(card: HeldCard, today: Date): MilestoneStatus[]
 expiryReminders(held: HeldCard[], today: Date): Reminder[]
-verdict(card: HeldCard, today: Date): { decision: "keep"|"downgrade"|"close"; reasons: string[]; netValueRs: number }
-impactOfChange(card: HeldCard, change: Change): { rupeesPerYear: number | null; explanation: string }
+verdict(card: HeldCard, held: HeldCard[], catalogue: Card[], profile: SpendProfile, today: Date): { decision: "keep"|"downgrade"|"close"; reasons: string[]; caveats: string[]; netValueRs: number }
+impactOfChange(card: HeldCard, change: Change, profile: SpendProfile): { rupeesPerYear: number | null; explanation: string }
 ```
 
 ### 8.3 bestCard rules
