@@ -60,7 +60,9 @@ describe("Catalogue schema (Sec 7.1)", () => {
   it("accepts a quarterly cap and a yearly lounge count", () => {
     const ok = {
       ...card,
-      rewards: [{ ...card.rewards[0], monthlyCapRs: 4000, capPeriod: "quarter" }],
+      rewards: [
+        { ...card.rewards[0], monthlyCapRs: 4000, capPeriod: "quarter" },
+      ],
       lounge: {
         domesticPerQuarter: null,
         domesticPerYear: 4,
@@ -73,19 +75,26 @@ describe("Catalogue schema (Sec 7.1)", () => {
   });
 
   it("rejects an unknown cap period", () => {
-    const bad = { ...card, rewards: [{ ...card.rewards[0], capPeriod: "week" }] };
+    const bad = {
+      ...card,
+      rewards: [{ ...card.rewards[0], capPeriod: "week" }],
+    };
     expect(Catalogue.safeParse(wrap([bad])).success).toBe(false);
   });
 
   it('accepts "never" and a month count for points expiry', () => {
     for (const v of ["never", 24, null]) {
-      expect(Catalogue.safeParse(wrap([{ ...card, pointsExpiryMonths: v }])).success).toBe(true);
+      expect(
+        Catalogue.safeParse(wrap([{ ...card, pointsExpiryMonths: v }])).success,
+      ).toBe(true);
     }
   });
 
   it("rejects other points expiry values", () => {
     for (const v of ["forever", 0, 1.5]) {
-      expect(Catalogue.safeParse(wrap([{ ...card, pointsExpiryMonths: v }])).success).toBe(false);
+      expect(
+        Catalogue.safeParse(wrap([{ ...card, pointsExpiryMonths: v }])).success,
+      ).toBe(false);
     }
   });
 
@@ -107,6 +116,8 @@ describe("shipped catalogue (Sec 13 step 1)", () => {
   it.todo("has 25 to 30 launch cards");
 
   it("has unique ids and issuer-page sources", () => {
-    expect(new Set(catalogue.cards.map((c) => c.id)).size).toBe(catalogue.cards.length);
+    expect(new Set(catalogue.cards.map((c) => c.id)).size).toBe(
+      catalogue.cards.length,
+    );
   });
 });
