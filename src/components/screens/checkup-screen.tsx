@@ -157,9 +157,18 @@ export function CheckupScreen() {
         })}
       </div>
 
-      <Link href="/cards" className={buttonVariants({ variant: "secondary" })}>
-        Edit my cards
-      </Link>
+      <div className="flex flex-wrap gap-3">
+        <Link href="/pay" className={buttonVariants()}>
+          Which card to pay with
+        </Link>
+
+        <Link
+          href="/cards"
+          className={buttonVariants({ variant: "secondary" })}
+        >
+          Edit my cards
+        </Link>
+      </div>
     </section>
   );
 }

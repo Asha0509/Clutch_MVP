@@ -167,9 +167,17 @@ export function CardsScreen() {
       )}
 
       {held.length > 0 && (
-        <Link href="/checkup" className={buttonVariants({ size: "lg" })}>
-          See my checkup
-        </Link>
+        <div className="flex flex-wrap gap-3">
+          <Link href="/checkup" className={buttonVariants({ size: "lg" })}>
+            See my checkup
+          </Link>
+          <Link
+            href="/pay"
+            className={buttonVariants({ size: "lg", variant: "secondary" })}
+          >
+            Which card to pay with
+          </Link>
+        </div>
       )}
 
       <div className="space-y-3">
